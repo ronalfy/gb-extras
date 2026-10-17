@@ -7,6 +7,10 @@
 
 namespace DLXPlugins\GBExtras;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Helper class for registering blocks.
  */
@@ -264,7 +268,7 @@ class Blocks {
 	/**
 	 * Process a list of images for a plugin.
 	 *
-	 * @param WP_Rest $request REST request.
+	 * @param \WP_REST_Request $request REST request.
 	 */
 	public function rest_add_remote_image( $request ) {
 		$image_url = filter_var( $request->get_param( 'imgUrl' ), FILTER_VALIDATE_URL );
@@ -278,10 +282,10 @@ class Blocks {
 			$extension = preg_replace( '/\?.*/', '', $extension );
 
 			// Get current domain.
-			$domain = parse_url( $image_url, PHP_URL_HOST );
+			$domain = wp_parse_url( $image_url, PHP_URL_HOST );
 
 			// If we're on same domain, bail successfully.
-			if ( $domain === $_SERVER['HTTP_HOST'] ) {
+			if ( isset( $_SERVER['HTTP_HOST'] ) && sanitize_text_field( wp_unslash( $_SERVER['HTTP_HOST'] ) ) === $domain ) {
 				\wp_send_json_success(
 					array(
 						'attachmentId'  => 0,
@@ -352,10 +356,8 @@ class Blocks {
 
 	/**
 	 * Process a list of images for a plugin.
-	 *
-	 * @param WP_Rest $request REST request.
 	 */
-	public function rest_get_gb_groups( $request ) {
+	public function rest_get_gb_groups() {
 
 		// Get existing SVGs.
 		$existing_svg_assets = get_option( 'generateblocks_svg_icons', array() );
@@ -421,7 +423,10 @@ class Blocks {
 		}
 		wp_register_style(
 			'gb-extras-block-editor-styles',
-			false
+			false,
+			array(),
+			Functions::get_plugin_version(),
+			'all'
 		);
 		wp_enqueue_style( 'gb-extras-block-editor-styles' );
 		wp_add_inline_style(

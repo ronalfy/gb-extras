@@ -178,7 +178,7 @@ class Admin_Bar {
 			}
 
 			// Add Forms only if enabled in GenerateBlocks Pro.
-			if ( function_exists( 'generateblocks_pro_forms_enabled' ) && generateblocks_pro_forms_enabled() ) {
+			if ( function_exists( 'generateblocks_pro_forms_enabled' ) && \generateblocks_pro_forms_enabled() ) {
 				$admin_bar->add_node(
 					array(
 						'parent' => 'generateblocks-menu',
@@ -202,7 +202,7 @@ class Admin_Bar {
 			}
 
 			// Add Editor Access only if available in GenerateBlocks Pro.
-			if ( function_exists( 'generateblocks_pro_editor_access_enabled' ) && generateblocks_pro_editor_access_enabled() ) {
+			if ( function_exists( 'generateblocks_pro_editor_access_enabled' ) && \generateblocks_pro_editor_access_enabled() ) {
 				$admin_bar->add_node(
 					array(
 						'parent' => 'generateblocks-menu',

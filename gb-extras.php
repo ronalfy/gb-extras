@@ -9,13 +9,16 @@
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       gb-extras
- * Domain Path:       /languages
  * Requires Plugins: generateblocks
  *
  * @package GBExtras
  */
 
 namespace DLXPlugins\GBExtras;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 define( 'GB_EXTRAS_VERSION', '3.0.0' );
 define( 'GB_EXTRAS_FILE', __FILE__ );
@@ -55,16 +58,6 @@ class GBExtras {
 	 * Class initializer.
 	 */
 	public function plugins_loaded() {
-		add_action(
-			'init',
-			function () {
-				load_plugin_textdomain(
-					'gb-extras',
-					false,
-					basename( __DIR__ ) . '/languages'
-				);
-			}
-		);
 
 		Blocks::run();
 

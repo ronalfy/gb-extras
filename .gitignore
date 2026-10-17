@@ -103,8 +103,6 @@ dist
 # TernJS port file
 .tern-port
 
-alerts-dlx.zip
-
 gb-extras.zip
 
 .npmrc

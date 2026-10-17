@@ -7,6 +7,10 @@
 
 namespace DLXPlugins\GBExtras;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Class Functions
  */
@@ -75,10 +79,10 @@ class Functions {
 				case 'url':
 					return esc_url( $attributes[ $attribute ] );
 				case 'default':
-					return new \WP_Error( 'alerts_dlx_unknown_type', __( 'Unknown type.', 'alerts-dlx' ) );
+					return new \WP_Error( 'alerts_dlx_unknown_type', __( 'Unknown type.', 'gb-extras' ) );
 			}
 		}
-		return new \WP_Error( 'alerts_dlx_attribute_not_found', __( 'Attribute not found.', 'alerts-dlx' ) );
+		return new \WP_Error( 'alerts_dlx_attribute_not_found', __( 'Attribute not found.', 'gb-extras' ) );
 	}
 
 	/**
@@ -101,7 +105,7 @@ class Functions {
 		 *
 		 * @param array $file_extensions The valid mime types.
 		 */
-		$file_extensions = apply_filters( 'wppic_block_file_extensions', $file_extensions );
+		$file_extensions = apply_filters( 'gb_extras_supported_file_extensions', $file_extensions );
 
 		return $file_extensions;
 	}
@@ -144,11 +148,10 @@ class Functions {
 	 * @since 1.0.0
 	 *
 	 * @param string $path Path to the asset.
-	 * @param string $type Type to check if it is activated or not.
 	 *
 	 * @return bool true if activated, false if not.
 	 */
-	public static function is_activated( $path, $type = 'plugin' ) {
+	public static function is_activated( $path ) {
 
 		// Gets all active plugins on the current site.
 		$active_plugins = self::is_multisite() ? get_site_option( 'active_sitewide_plugins' ) : get_option( 'active_plugins', array() );
@@ -340,4 +343,3 @@ class Functions {
 		return defined( 'GENERATEBLOCKS_PRO_VERSION' );
 	}
 }
-

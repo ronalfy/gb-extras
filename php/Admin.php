@@ -7,6 +7,9 @@
 
 namespace DLXPlugins\GBExtras;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 /**
  * Admin class.
  */

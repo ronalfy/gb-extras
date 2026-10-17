@@ -1,7 +1,7 @@
-.alerts-dlx-icon-popover .components-popover__content > div {
+.gb-extras-icon-popover .components-popover__content > div {
 	min-width: 350px;
 }
-.alerts-dlx-icon-picker {
+.gb-extras-icon-picker {
 	padding: 16px;
 	text-align: center;
 
@@ -10,7 +10,7 @@
 		padding: 0;
 	}
 }
-.alerts-dlx-icon-list {
+.gb-extras-icon-list {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-gap: 10px;
@@ -27,7 +27,7 @@
 		height: 24px;
 	}
 }
-.alerts-dlx-custom-icon-input {
+.gb-extras-custom-icon-input {
 	button {
 		&:first-child {
 			margin-right: 15px;
@@ -37,10 +37,10 @@
 		}
 	}
 }
-.components-base-control.alerts-dlx-icon-wrapper {
+.components-base-control.gb-extras-icon-wrapper {
 	font-size: 1em;
 }
-.alerts-dlx-icon-preview {
+.gb-extras-icon-preview {
 	display: flex;
 	justify-content: center;
 	font-size: 1em;
@@ -50,13 +50,13 @@
 		margin-top: 0.175em;
 	}
 }
-.alerts-dlx-custom-icon-preview {
+.gb-extras-custom-icon-preview {
 	svg {
 		max-width: 48px;
 		max-height: 48px;
 	}
 }
-button.components-button.alerts-dlx-icon-preview-button {
+button.components-button.gb-extras-icon-preview-button {
 	display: flex;
 	align-items: flex-start;
 	justify-content: center;
