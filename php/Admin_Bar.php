@@ -70,6 +70,7 @@ class Admin_Bar {
 				font-size: 18px;
 				line-height: 100%;
 				margin-top: 2px;
+				color: #fff;
 			}'
 		);
 		wp_enqueue_style( 'gb-extras-admin-bar' );
@@ -123,6 +124,21 @@ class Admin_Bar {
 		$existing_node = $admin_bar->get_node( 'generateblocks-menu' );
 		if ( $existing_node ) {
 			return;
+		}
+
+		if ( ! is_admin() && class_exists( '\GenerateBlocks_Pro_Design_Menu' ) ) {
+			$menu_font_url = GENERATEBLOCKS_PRO_DIR_URL . 'dist/assets/fonts/generatepress-admin.woff2';
+			?>
+			<style id="gb-admin-menu-groups">
+			@font-face {
+				font-family: generatepress-admin;
+				src: url("<?php echo esc_url( $menu_font_url ); ?>") format("woff2");
+				font-weight: 400;
+				font-style: normal;
+				font-display: block;
+			}
+			</style>
+			<?php
 		}
 
 		// Add main GenerateBlocks menu item.

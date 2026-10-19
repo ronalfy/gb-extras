@@ -83,114 +83,77 @@ const Interface = ( props ) => {
 			{ /* eslint-disable-next-line no-unused-vars */ }
 			<form onSubmit={ handleSubmit( ( formData ) => {} ) }>
 				<div id="dlx-gb-extras-admin-table">
-					<PanelBody title={ __( 'Adobe Fonts', 'gb-extras' ) } initialOpen={ true }>
-						<div className="gblocks-dashboard-panel-row-wrapper">
-							<PanelRow>
-								<div className="dlx-admin__row">
-									<Controller
-										name="enableAdobeFonts"
-										control={ control }
-										render={ ( { field: { onChange } } ) => (
-											<ToggleControl
-												label={ __(
-													'Enable Adobe Fonts in the Block Editor',
-													'gb-extras'
-												) }
-												checked={ getValues( 'enableAdobeFonts' ) }
-												onChange={ ( boolValue ) => {
-													onChange( boolValue );
-												} }
-												help={ __(
-													'If you are using Adobe Fonts, you can display these in the block editor.',
-													'gb-extras'
-												) }
-											/>
-										) }
-									/>
-								</div>
-							</PanelRow>
-						</div>
-					</PanelBody>
 					<PanelBody
 						title={ __( 'Block Settings', 'gb-extras' ) }
 						initialOpen={ true }
 					>
 						<div className="gblocks-dashboard-panel-row-wrapper">
-							<PanelRow>
-								<div className="dlx-admin__row">
-									<Controller
-										name="enableV1Transformations"
-										control={ control }
-										render={ ( { field: { onChange } } ) => (
-											<ToggleControl
-												label={ __(
-													'Enable v1 Transformations Block Command',
-													'gb-extras'
-												) }
-												help={ __(
-													'Enable a command in the block editor to transform GenerateBlocks 1.x blocks to 2.x blocks.',
-													'gb-extras'
-												) }
-												checked={ getValues( 'enableV1Transformations' ) }
-												onChange={ ( boolValue ) => {
-													onChange( boolValue );
-												} }
-											/>
-										) }
-									/>
-								</div>
-							</PanelRow>
-							<PanelRow>
-								<div className="dlx-admin__row">
-									<Controller
-										name="enableV1Blocks"
-										control={ control }
-										render={ ( { field: { onChange } } ) => (
-											<ToggleControl
-												label={ __(
-													'Enable v1 and v2 Blocks (Both Visible)',
-													'gb-extras'
-												) }
-												checked={ getValues( 'enableV1Blocks' ) }
-												help={ __(
-													'Enable the use of v1 blocks in the block editor. This can help with the migration from GenerateBlocks 1.x to 2.x.',
-													'gb-extras'
-												) }
-												onChange={ ( boolValue ) => {
-													onChange( boolValue );
-												} }
-											/>
-										) }
-									/>
-								</div>
-							</PanelRow>
-							<PanelRow>
-								<div className="dlx-admin__row">
-									<Controller
-										name="enableFrontendCommandPalette"
-										control={ control }
-										render={ ( { field: { onChange } } ) => (
-											<ToggleControl
-												label={ __(
-													'Enable Frontend Command Palette',
-													'gb-extras'
-												) }
-												checked={ getValues( 'enableFrontendCommandPalette' ) }
-												help={ __(
-													'Enable the WordPress command palette (Ctrl/Cmd+K) on the frontend for logged-in administrators. Note: This requires WordPress 6.9+ and may have limitations. Search for GenerateBlocks for shortcuts.',
-													'gb-extras'
-												) }
-												onChange={ ( boolValue ) => {
-													onChange( boolValue );
-												} }
-											/>
-										) }
-									/>
-								</div>
-							</PanelRow>
+							<div className="dlx-admin__row">
+								<Controller
+									name="enableV1Transformations"
+									control={ control }
+									render={ ( { field: { onChange } } ) => (
+										<ToggleControl
+											label={ __(
+												'Enable v1 Transformations Block Command',
+												'gb-extras'
+											) }
+											help={ __(
+												'Enable a command in the block editor to transform GenerateBlocks 1.x blocks to 2.x blocks.',
+												'gb-extras'
+											) }
+											checked={ getValues( 'enableV1Transformations' ) }
+											onChange={ ( boolValue ) => {
+												onChange( boolValue );
+											} }
+										/>
+									) }
+								/>
+							</div>
+							<div className="dlx-admin__row">
+								<Controller
+									name="enableV1Blocks"
+									control={ control }
+									render={ ( { field: { onChange } } ) => (
+										<ToggleControl
+											label={ __(
+												'Enable v1 and v2 Blocks (Both Visible)',
+												'gb-extras'
+											) }
+											checked={ getValues( 'enableV1Blocks' ) }
+											help={ __(
+												'Enable the use of v1 blocks in the block editor. This can help with the migration from GenerateBlocks 1.x to 2.x.',
+												'gb-extras'
+											) }
+											onChange={ ( boolValue ) => {
+												onChange( boolValue );
+											} }
+										/>
+									) }
+								/>
+							</div>
+							<div className="dlx-admin__row">
+								<Controller
+									name="enableFrontendCommandPalette"
+									control={ control }
+									render={ ( { field: { onChange } } ) => (
+										<ToggleControl
+											label={ __( 'Enable Frontend Command Palette', 'gb-extras' ) }
+											checked={ getValues( 'enableFrontendCommandPalette' ) }
+											help={ __(
+												'Enable the WordPress command palette (Ctrl/Cmd+K) on the frontend for logged-in administrators. Note: This requires WordPress 6.9+ and may have limitations. Search for GenerateBlocks for shortcuts.',
+												'gb-extras'
+											) }
+											onChange={ ( boolValue ) => {
+												onChange( boolValue );
+											} }
+										/>
+									) }
+								/>
+							</div>
 							{ getValues( 'enableV1Blocks' ) && (
 								<>
-									<PanelRow>
+									<div className="dlx-admin__row">
 										<div className="dlx-admin__row">
 											<Controller
 												name="v1CategoryLabel"
@@ -210,8 +173,8 @@ const Interface = ( props ) => {
 												) }
 											/>
 										</div>
-									</PanelRow>
-									<PanelRow>
+									</div>
+									<div className="dlx-admin__row">
 										<div className="dlx-admin__row">
 											<Controller
 												name="v2CategoryLabel"
@@ -231,90 +194,84 @@ const Interface = ( props ) => {
 												) }
 											/>
 										</div>
-									</PanelRow>
-									<PanelRow>
-										<div className="dlx-admin__row">
-											<Controller
-												name="v1BlockSuffix"
-												control={ control }
-												render={ ( { field: { onChange } } ) => (
-													<TextControl
-														label={ __( 'v1 Block Suffix', 'gb-extras' ) }
-														value={ getValues( 'v1BlockSuffix' ) }
-														onChange={ ( textValue ) => {
-															onChange( textValue );
-														} }
-														help={ __(
-															'This suffix will be added to the end of the block name for v1 blocks. Leave blank to not add a suffix.',
-															'gb-extras'
-														) }
-													/>
-												) }
-											/>
-										</div>
-									</PanelRow>
-									<PanelRow>
-										<div className="dlx-admin__row">
-											<Controller
-												name="v2BlockSuffix"
-												control={ control }
-												render={ ( { field: { onChange } } ) => (
-													<TextControl
-														label={ __( 'v2 Block Suffix', 'gb-extras' ) }
-														value={ getValues( 'v2BlockSuffix' ) }
-														onChange={ ( textValue ) => {
-															onChange( textValue );
-														} }
-														help={ __(
-															'This suffix will be added to the end of the block name for v2 blocks. Leave blank to not add a suffix.',
-															'gb-extras'
-														) }
-													/>
-												) }
-											/>
-										</div>
-									</PanelRow>
-								</>
-							) }
-							<PanelRow>
-								<div className="dlx-admin__row">
-									<Controller
-										name="enableMarkdownToHeadlineBlock"
-										control={ control }
-										render={ ( { field: { onChange } } ) => (
-											<ToggleControl
-												label={ __( 'Enable Markdown to Text Block', 'gb-extras' ) }
-												checked={ getValues( 'enableMarkdownToHeadlineBlock' ) }
-												onChange={ ( boolValue ) => {
-													onChange( boolValue );
-												} }
-												help={ __(
-													'By default, the markdown syntax for headings creates Core heading blocks. By enabling this, the markdown will now be converted to the Text block.',
-													'gb-extras'
-												) }
-											/>
-										) }
-									/>
-									{ getValues( 'enableDefaultHeadlineBlock' ) &&
-										getValues( 'enableMarkdownToHeadlineBlock' ) && (
-										<Notice
-											message={ __(
-												'Markdown syntax is unavailable if the default block is set to the headline block.',
-												'gb-extras'
-											) }
-											status="warning"
-											politeness="assertive"
-											inline={ true }
-											icon={ () => (
-												<AlertCircle
-													size={ 16 }
-													style={ { color: 'currentColor' } }
+									</div>
+									<div className="dlx-admin__row">
+										<Controller
+											name="v1BlockSuffix"
+											control={ control }
+											render={ ( { field: { onChange } } ) => (
+												<TextControl
+													label={ __( 'v1 Block Suffix', 'gb-extras' ) }
+													value={ getValues( 'v1BlockSuffix' ) }
+													onChange={ ( textValue ) => {
+														onChange( textValue );
+													} }
+													help={ __(
+														'This suffix will be added to the end of the block name for v1 blocks. Leave blank to not add a suffix.',
+														'gb-extras'
+													) }
 												/>
 											) }
 										/>
+									</div>
+									<div className="dlx-admin__row">
+										<Controller
+											name="v2BlockSuffix"
+											control={ control }
+											render={ ( { field: { onChange } } ) => (
+												<TextControl
+													label={ __( 'v2 Block Suffix', 'gb-extras' ) }
+													value={ getValues( 'v2BlockSuffix' ) }
+													onChange={ ( textValue ) => {
+														onChange( textValue );
+													} }
+													help={ __(
+														'This suffix will be added to the end of the block name for v2 blocks. Leave blank to not add a suffix.',
+														'gb-extras'
+													) }
+												/>
+											) }
+										/>
+									</div>
+								</>
+							) }
+							<div className="dlx-admin__row">
+								<Controller
+									name="enableMarkdownToHeadlineBlock"
+									control={ control }
+									render={ ( { field: { onChange } } ) => (
+										<ToggleControl
+											label={ __( 'Enable Markdown to Text Block', 'gb-extras' ) }
+											checked={ getValues( 'enableMarkdownToHeadlineBlock' ) }
+											onChange={ ( boolValue ) => {
+												onChange( boolValue );
+											} }
+											help={ __(
+												'By default, the markdown syntax for headings creates Core heading blocks. By enabling this, the markdown will now be converted to the Text block.',
+												'gb-extras'
+											) }
+										/>
 									) }
-								</div>
-							</PanelRow>
+								/>
+								{ getValues( 'enableDefaultHeadlineBlock' ) &&
+									getValues( 'enableMarkdownToHeadlineBlock' ) && (
+									<Notice
+										message={ __(
+											'Markdown syntax is unavailable if the default block is set to the headline block.',
+											'gb-extras'
+										) }
+										status="warning"
+										politeness="assertive"
+										inline={ true }
+										icon={ () => (
+											<AlertCircle
+												size={ 16 }
+												style={ { color: 'currentColor' } }
+											/>
+										) }
+									/>
+								) }
+							</div>
 						</div>
 					</PanelBody>
 					<PanelBody
@@ -322,16 +279,14 @@ const Interface = ( props ) => {
 						initialOpen={ true }
 					>
 						<div className="gblocks-dashboard-panel-row-wrapper">
-							<PanelRow>
-								<div className="dlx-admin__row">
-									<p className="description">
-										{ __(
-											'Select the post types that you would like to enable GenerateBlocks styles for.',
-											'gb-extras'
-										) }
-									</p>
-								</div>
-							</PanelRow>
+							<div className="dlx-admin__row">
+								<p className="description">
+									{ __(
+										'Select the post types that you would like to enable GenerateBlocks styles for.',
+										'gb-extras'
+									) }
+								</p>
+							</div>
 							<div className="dlx-admin__row">
 								{ Object.values( dlxGBExtrasAdmin.postTypes ).map( ( postType ) => {
 									const postTypeSlug = postType.name;
@@ -368,16 +323,14 @@ const Interface = ( props ) => {
 						initialOpen={ true }
 					>
 						<div className="gblocks-dashboard-panel-row-wrapper">
-							<PanelRow>
-								<div className="dlx-admin__row">
-									<p className="description">
-										{ __(
-											'Select post types that should clear GenerateBlocks CSS caches when saved, so styles regenerate on the next page load. Useful for template parts and other shared content.',
-											'gb-extras'
-										) }
-									</p>
-								</div>
-							</PanelRow>
+							<div className="dlx-admin__row">
+								<p className="description">
+									{ __(
+										'Select post types that should clear GenerateBlocks CSS caches when saved, so styles regenerate on the next page load. Useful for template parts and other shared content.',
+										'gb-extras'
+									) }
+								</p>
+							</div>
 							<div className="dlx-admin__row">
 								{ Object.values( dlxGBExtrasAdmin.postTypes ).map( ( postType ) => {
 									const postTypeSlug = postType.name;
@@ -415,58 +368,80 @@ const Interface = ( props ) => {
 						initialOpen={ true }
 					>
 						<div className="gblocks-dashboard-panel-row-wrapper">
-							<PanelRow>
+							<div className="dlx-admin__row">
+								<Controller
+									name="adminMenuBar.enabled"
+									control={ control }
+									render={ ( { field: { onChange, value } } ) => (
+										<ToggleControl
+											label={ __(
+												'Enable GenerateBlocks Admin Bar Menu',
+												'gb-extras'
+											) }
+											checked={ value ?? true }
+											onChange={ ( boolValue ) => {
+												onChange( boolValue );
+												// If disabling the main menu, also disable replace with full menu.
+												if ( ! boolValue ) {
+													setValue( 'adminMenuBar.replaceWithFullMenu', false );
+												}
+											} }
+											help={ __(
+												'Administrators and Editors only: when disabled, all GenerateBlocks admin bar menu items are hidden from the top toolbar for those roles. Other roles keep the default menu.',
+												'gb-extras'
+											) }
+										/>
+									) }
+								/>
+							</div>
+							{ getValues( 'adminMenuBar.enabled' ) && (
 								<div className="dlx-admin__row">
 									<Controller
-										name="adminMenuBar.enabled"
+										name="adminMenuBar.replaceWithFullMenu"
 										control={ control }
 										render={ ( { field: { onChange, value } } ) => (
 											<ToggleControl
 												label={ __(
-													'Enable GenerateBlocks Admin Bar Menu',
+													'Replace Overlay Panels with Full GenerateBlocks Menu',
 													'gb-extras'
 												) }
-												checked={ value ?? true }
-												onChange={ ( boolValue ) => {
-													onChange( boolValue );
-													// If disabling the main menu, also disable replace with full menu.
-													if ( ! boolValue ) {
-														setValue( 'adminMenuBar.replaceWithFullMenu', false );
-													}
-												} }
+												checked={ value ?? false }
+												onChange={ onChange }
 												help={ __(
-													'Administrators and Editors only: when disabled, all GenerateBlocks admin bar menu items are hidden from the top toolbar for those roles. Other roles keep the default menu.',
+													'Administrators and Editors only: when enabled, replaces the Overlay Panels menu with a full GenerateBlocks menu containing Settings, Local Patterns, Global Styles, Overlay Panels, Conditions, Asset Library, and GB Extras.',
 													'gb-extras'
 												) }
 											/>
 										) }
 									/>
 								</div>
-							</PanelRow>
-							{ getValues( 'adminMenuBar.enabled' ) && (
-								<PanelRow>
-									<div className="dlx-admin__row">
-										<Controller
-											name="adminMenuBar.replaceWithFullMenu"
-											control={ control }
-											render={ ( { field: { onChange, value } } ) => (
-												<ToggleControl
-													label={ __(
-														'Replace Overlay Panels with Full GenerateBlocks Menu',
-														'gb-extras'
-													) }
-													checked={ value ?? false }
-													onChange={ onChange }
-													help={ __(
-														'Administrators and Editors only: when enabled, replaces the Overlay Panels menu with a full GenerateBlocks menu containing Settings, Local Patterns, Global Styles, Overlay Panels, Conditions, Asset Library, and GB Extras.',
-														'gb-extras'
-													) }
-												/>
+							) }
+						</div>
+					</PanelBody>
+					<PanelBody title={ __( 'Miscellaneous', 'gb-extras' ) } initialOpen={ true }>
+						<div className="gblocks-dashboard-panel-row-wrapper">
+							<div className="dlx-admin__row">
+								<Controller
+									name="enableAdobeFonts"
+									control={ control }
+									render={ ( { field: { onChange } } ) => (
+										<ToggleControl
+											label={ __(
+												'Enable Adobe Fonts in the Block Editor',
+												'gb-extras'
+											) }
+											checked={ getValues( 'enableAdobeFonts' ) }
+											onChange={ ( boolValue ) => {
+												onChange( boolValue );
+											} }
+											help={ __(
+												'If you are using the Custom Adobe Fonts plugin or the Blocksy Adobe Fonts module, you can display these in the block editor.',
+												'gb-extras'
 											) }
 										/>
-									</div>
-								</PanelRow>
-							) }
+									) }
+								/>
+							</div>
 						</div>
 					</PanelBody>
 					<SaveResetButtons

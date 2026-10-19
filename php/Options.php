@@ -130,7 +130,7 @@ class Options {
 			'v2BlockSuffix'                 => '(v2)',
 			'adminMenuBar'                  => array(
 				'enabled'             => true,
-				'replaceWithFullMenu' => false,
+				'replaceWithFullMenu' => true,
 			),
 			'enableFrontendCommandPalette'  => false,
 		);
