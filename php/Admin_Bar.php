@@ -52,6 +52,28 @@ class Admin_Bar {
 			return;
 		}
 
+		wp_register_style(
+			'gb-extras-admin-bar',
+			null,
+			array(),
+			'1.0.0',
+			'all'
+		);
+		wp_add_inline_style(
+			'gb-extras-admin-bar',
+			'#wp-admin-bar-generateblocks-menu > .ab-item:before {
+				content: "\f111";
+				background-color: transparent;
+				-webkit-mask-image: none;
+				mask-image: none;
+				font-family: generatepress-admin, dashicons, sans-serif;
+				font-size: 18px;
+				line-height: 100%;
+				margin-top: 2px;
+			}'
+		);
+		wp_enqueue_style( 'gb-extras-admin-bar' );
+
 		$options                = Options::get_options();
 		$admin_menu_bar         = $options['adminMenuBar'] ?? array();
 		$enabled                = (bool) ( $admin_menu_bar['enabled'] ?? true );
@@ -92,16 +114,6 @@ class Admin_Bar {
 	}
 
 	/**
-	 * Get GenerateBlocks icon SVG for admin bar.
-	 *
-	 * @return string SVG icon HTML.
-	 */
-	private function get_generateblocks_icon() {
-		$svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 60.12" width="16" height="16" style="vertical-align: middle; margin-right: 5px; fill: #FFFFFF;"><path d="M6.686 31.622V18.918a.077.077 0 0 1 .05-.072l6.5-2.313 6.5-2.313 9.682-3.445L39.1 7.33a.067.067 0 0 0 .036-.028.074.074 0 0 0 .014-.044V.076a.077.077 0 0 0-.032-.062.076.076 0 0 0-.069-.009l-13 4.625-13 4.625-6.5 2.313-6.5 2.313a.067.067 0 0 0-.036.028.097.097 0 0 0-.013.046V52.067c0 .026.013.048.032.062s.044.018.069.009l3.267-1.163 3.267-1.163c.015-.005.028-.015.036-.028s.014-.028.014-.044V37.999l.001-6.377c-.001 0 0 0 0 0z" /><path d="m23.949 29.976 13-4.625 13-4.625c.015-.005.028-.015.036-.028s.015-.028.015-.044V8.056a.077.077 0 0 0-.032-.062.076.076 0 0 0-.069-.009l-13 4.625-13 4.625-6.5 2.313-6.5 2.313a.067.067 0 0 0-.036.028.074.074 0 0 0-.014.044V60.045c0 .026.013.048.032.062a.076.076 0 0 0 .069.009l6.475-2.304 6.475-2.304 6.525-2.322 6.525-2.322 6.5-2.313 6.5-2.313c.015-.005.028-.015.036-.028s.014-.025.014-.041V27.193a.077.077 0 0 0-.032-.062.076.076 0 0 0-.069-.009l-6.45 2.295L37 31.711a.067.067 0 0 0-.036.028.074.074 0 0 0-.014.044v6.272a.077.077 0 0 1-.05.072l-6.45 2.295L24 42.715a.075.075 0 0 1-.101-.071V30.046c0-.016.005-.031.014-.044a.08.08 0 0 1 .036-.026z" /></svg>';
-		return $svg;
-	}
-
-	/**
 	 * Add full GenerateBlocks admin bar menu with all sub-items.
 	 *
 	 * @param \WP_Admin_Bar $admin_bar The admin bar object.
@@ -113,23 +125,29 @@ class Admin_Bar {
 			return;
 		}
 
-		// Get GenerateBlocks icon.
-		$icon = $this->get_generateblocks_icon();
-
 		// Add main GenerateBlocks menu item.
 		$admin_bar->add_menu(
 			array(
 				'id'    => 'generateblocks-menu',
-				'title' => $icon . __( 'GenerateBlocks', 'gb-extras' ),
+				'title' => esc_html__( 'GenerateBlocks', 'gb-extras' ),
 				'href'  => admin_url( 'admin.php?page=generateblocks-settings' ),
+			)
+		);
+
+		$admin_bar->add_node(
+			array(
+				'parent' => 'generateblocks-menu',
+				'id'     => 'generateblocks-settings-group',
+				'title'  => esc_html__( 'Settings', 'gb-extras' ),
+				'href'   => admin_url( 'admin.php?page=generateblocks-settings' ),
 			)
 		);
 
 		// Add Settings submenu (available in free version).
 		$admin_bar->add_node(
 			array(
-				'parent' => 'generateblocks-menu',
-				'id'     => 'generateblocks-settings',
+				'parent' => 'generateblocks-settings-group',
+				'id'     => 'generateblocks-settings-item',
 				'title'  => __( 'Settings', 'gb-extras' ),
 				'href'   => admin_url( 'admin.php?page=generateblocks-settings' ),
 			)
@@ -137,7 +155,50 @@ class Admin_Bar {
 
 		// Add Pro items (redundant check but kept for safety - we're already in Pro context).
 		if ( Functions::is_generateblocks_pro_active() ) {
-			// Get GenerateBlocks settings to check if features are enabled.
+			// Add Editor Access only if available in GenerateBlocks Pro.
+			if ( function_exists( 'generateblocks_pro_editor_access_enabled' ) && \generateblocks_pro_editor_access_enabled() ) {
+				$admin_bar->add_node(
+					array(
+						'parent' => 'generateblocks-settings-group',
+						'id'     => 'generateblocks-editor-access',
+						'title'  => __( 'Editor Access', 'gb-extras' ),
+						'href'   => admin_url( 'admin.php?page=generateblocks-editor-access' ),
+					)
+				);
+			}
+			$admin_bar->add_node(
+				array(
+					'parent' => 'generateblocks-menu',
+					'id'     => 'generateblocks-design-group',
+					'title'  => __( 'Design', 'gb-extras' ),
+				)
+			);
+			// Get GenerateBlocks design settings.
+			$admin_bar->add_node(
+				array(
+					'parent' => 'generateblocks-design-group',
+					'id'     => 'generateblocks-global-styles-item',
+					'title'  => __( 'Global Styles', 'gb-extras' ),
+					'href'   => admin_url( 'admin.php?page=generateblocks-styles' ),
+				)
+			);
+			$admin_bar->add_node(
+				array(
+					'parent' => 'generateblocks-design-group',
+					'id'     => 'generateblocks-design-tokens-item',
+					'title'  => __( 'Design Tokens', 'gb-extras' ),
+					'href'   => admin_url( 'admin.php?page=generateblocks-styles&view=design-tokens' ),
+				)
+			);
+
+			$admin_bar->add_node(
+				array(
+					'parent' => 'generateblocks-menu',
+					'id'     => 'generateblocks-build-group',
+					'title'  => __( 'Build', 'gb-extras' ),
+				)
+			);
+
 			// Defaults: enable_overlay_panels and enable_block_conditions both default to true.
 			$gb_options = get_option( 'generateblocks', array() );
 
@@ -148,43 +209,43 @@ class Admin_Bar {
 			// Add Local Patterns.
 			$admin_bar->add_node(
 				array(
-					'parent' => 'generateblocks-menu',
-					'id'     => 'generateblocks-local-patterns',
+					'parent' => 'generateblocks-build-group',
+					'id'     => 'generateblocks-local-patterns-item',
 					'title'  => __( 'Local Patterns', 'gb-extras' ),
 					'href'   => admin_url( 'edit.php?post_type=wp_block' ),
 				)
 			);
 
-			// Add Global Styles.
+			// Add Asset Library.
 			$admin_bar->add_node(
 				array(
-					'parent' => 'generateblocks-menu',
-					'id'     => 'generateblocks-global-styles',
-					'title'  => __( 'Global Styles', 'gb-extras' ),
-					'href'   => admin_url( 'admin.php?page=generateblocks-styles' ),
+					'parent' => 'generateblocks-build-group',
+					'id'     => 'generateblocks-asset-library-item',
+					'title'  => __( 'Asset Library', 'gb-extras' ),
+					'href'   => admin_url( 'admin.php?page=generateblocks-asset-library' ),
 				)
 			);
-
-			// Add Overlay Panels only if enabled in GenerateBlocks settings.
-			if ( $overlay_panels_enabled ) {
-				$admin_bar->add_node(
-					array(
-						'parent' => 'generateblocks-menu',
-						'id'     => 'generateblocks-overlay-panels',
-						'title'  => __( 'Overlay Panels', 'gb-extras' ),
-						'href'   => admin_url( 'admin.php?page=generateblocks-overlay-panels' ),
-					)
-				);
-			}
 
 			// Add Forms only if enabled in GenerateBlocks Pro.
 			if ( function_exists( 'generateblocks_pro_forms_enabled' ) && \generateblocks_pro_forms_enabled() ) {
 				$admin_bar->add_node(
 					array(
-						'parent' => 'generateblocks-menu',
+						'parent' => 'generateblocks-build-group',
 						'id'     => 'generateblocks-forms',
 						'title'  => __( 'Forms', 'gb-extras' ),
 						'href'   => admin_url( 'admin.php?page=generateblocks-forms' ),
+					)
+				);
+			}
+
+			// Add Overlay Panels only if enabled in GenerateBlocks settings.
+			if ( $overlay_panels_enabled ) {
+				$admin_bar->add_node(
+					array(
+						'parent' => 'generateblocks-build-group',
+						'id'     => 'generateblocks-overlay-panels',
+						'title'  => __( 'Overlay Panels', 'gb-extras' ),
+						'href'   => admin_url( 'admin.php?page=generateblocks-overlay-panels' ),
 					)
 				);
 			}
@@ -193,42 +254,20 @@ class Admin_Bar {
 			if ( $conditions_enabled ) {
 				$admin_bar->add_node(
 					array(
-						'parent' => 'generateblocks-menu',
+						'parent' => 'generateblocks-build-group',
 						'id'     => 'generateblocks-conditions',
 						'title'  => __( 'Conditions', 'gb-extras' ),
 						'href'   => admin_url( 'admin.php?page=generateblocks-conditions' ),
 					)
 				);
 			}
-
-			// Add Editor Access only if available in GenerateBlocks Pro.
-			if ( function_exists( 'generateblocks_pro_editor_access_enabled' ) && \generateblocks_pro_editor_access_enabled() ) {
-				$admin_bar->add_node(
-					array(
-						'parent' => 'generateblocks-menu',
-						'id'     => 'generateblocks-editor-access',
-						'title'  => __( 'Editor Access', 'gb-extras' ),
-						'href'   => admin_url( 'admin.php?page=generateblocks-editor-access' ),
-					)
-				);
-			}
-
-			// Add Asset Library.
-			$admin_bar->add_node(
-				array(
-					'parent' => 'generateblocks-menu',
-					'id'     => 'generateblocks-asset-library',
-					'title'  => __( 'Asset Library', 'gb-extras' ),
-					'href'   => admin_url( 'admin.php?page=generateblocks-asset-library' ),
-				)
-			);
 		}
 
 		// Add GB Extras last.
 		$admin_bar->add_node(
 			array(
-				'parent' => 'generateblocks-menu',
-				'id'     => 'generateblocks-extras',
+				'parent' => 'generateblocks-settings-group',
+				'id'     => 'generateblocks-extras-item',
 				'title'  => __( 'Extras', 'gb-extras' ),
 				'href'   => admin_url( 'admin.php?page=dlx-gb-extras' ),
 			)
