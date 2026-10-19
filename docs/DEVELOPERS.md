@@ -79,7 +79,7 @@ There is no broader intentional public PHP/JS API. Treat other identifiers as in
 
 ### Consumed (GenerateBlocks / WordPress)
 
-Examples: `generateblocks_typography_font_family_list`, `generateblocks_do_content`, `generateblocks_dashboard_screens`, `block_categories_all`, `block_type_metadata`, `blocks.registerBlockType`, admin-bar APIs, GenerateBlocks CSS regenerate REST.
+Examples: `generateblocks_typography_font_family_list`, `generateblocks_do_content`, `generateblocks_dashboard_screens`, `block_categories_all`, `block_type_metadata`, `blocks.registerBlockType`, admin-bar APIs.
 
 ## AJAX
 
@@ -98,6 +98,7 @@ Namespace: `dlxplugins/gb-extras/v1`
 | Route | Method | Purpose |
 | --- | --- | --- |
 | `/process_image` | POST | Sideload a remote image for Pattern Inserter |
+| `/regenerate_css_files` | POST | Clear `generateblocks_dynamic_css_posts`; Pro calls `GenerateBlocks_Pro_Enqueue_Styles::build_css()` |
 | `/get_asset_icon_groups` | GET | Asset icon groups helper |
 
 Permission callbacks require appropriate upload / edit capabilities (see `Blocks::rest_image_sideload_permissions`).

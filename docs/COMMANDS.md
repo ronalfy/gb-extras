@@ -18,7 +18,7 @@ Commands register via `@wordpress/commands` `useCommand`. Source lives under `sr
 | `dlx-transform-v1-blocks-to-v2` | GenerateBlocks: Convert v1 Blocks to v2 (Experimental) | Block editor | Gated by `enableV1Transformations` |
 | `dlx-transform-headings-to-gb-text` | GenerateBlocks: Convert Headings to Text Blocks | Block editor | Bulk-convert core headings |
 | `dlx-transform-paragraphs-to-gb-text` | GenerateBlocks: Convert Paragraphs to Text Blocks | Block editor | Bulk-convert core paragraphs |
-| `dlx-gb-extras-refresh-css-files` | GenerateBlocks: Generate CSS Files | Admin + frontend | Calls GenerateBlocks REST `generateblocks/v1/regenerate_css_files` |
+| `dlx-gb-extras-refresh-css-files` | GenerateBlocks: Generate CSS Files | Admin + frontend | `POST dlxplugins/gb-extras/v1/regenerate_css_files` |
 
 ## Implementation tips
 

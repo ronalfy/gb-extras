@@ -80,7 +80,7 @@ function useRefreshCSSFilesCommand() {
       setWarning(false);
       setMessage('');
       _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2___default()({
-        path: '/generateblocks/v1/regenerate_css_files',
+        path: '/dlxplugins/gb-extras/v1/regenerate_css_files',
         method: 'POST'
       }).then(function (result) {
         setIsLoading(false);

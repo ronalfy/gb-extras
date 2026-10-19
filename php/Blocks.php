@@ -263,6 +263,15 @@ class Blocks {
 				'permission_callback' => array( $this, 'rest_image_sideload_permissions' ),
 			)
 		);
+		register_rest_route(
+			'dlxplugins/gb-extras/v1',
+			'/regenerate_css_files',
+			array(
+				'methods'             => 'POST',
+				'callback'            => array( $this, 'rest_regenerate_css_files' ),
+				'permission_callback' => array( $this, 'rest_image_sideload_permissions' ),
+			)
+		);
 	}
 
 	/**
@@ -376,6 +385,47 @@ class Blocks {
 			array(
 				'groups' => $groups,
 			)
+		);
+	}
+
+	/**
+	 * Regenerate GenerateBlocks CSS caches and global stylesheet files.
+	 *
+	 * @param \WP_REST_Request $request REST request.
+	 * @return \WP_REST_Response
+	 */
+	public function rest_regenerate_css_files( $request ) {
+		unset( $request );
+
+		update_option( 'generateblocks_dynamic_css_posts', array() );
+
+		if ( class_exists( 'GenerateBlocks_Pro_Enqueue_Styles' ) ) {
+			$styles_enqueue = \GenerateBlocks_Pro_Enqueue_Styles::get_instance();
+			$styles_enqueue->build_css();
+
+			return new \WP_REST_Response(
+				array(
+					'success'  => true,
+					'response' => __( 'Global styles CSS regenerated successfully.', 'gb-extras' ),
+				),
+				200
+			);
+		}
+
+		if ( class_exists( 'GenerateBlocks_Enqueue_CSS' ) ) {
+			$legacy_enqueue = \GenerateBlocks_Enqueue_CSS::get_instance();
+
+			if ( is_callable( array( $legacy_enqueue, 'make_css' ) ) ) {
+				$legacy_enqueue->make_css();
+			}
+		}
+
+		return new \WP_REST_Response(
+			array(
+				'success'  => true,
+				'response' => __( 'CSS caches cleared. Block styles will regenerate on the next page load.', 'gb-extras' ),
+			),
+			200
 		);
 	}
 

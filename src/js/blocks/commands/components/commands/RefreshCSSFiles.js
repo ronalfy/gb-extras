@@ -34,7 +34,7 @@ export function useRefreshCSSFilesCommand() {
 			setMessage( '' );
 
 			apiFetch( {
-				path: '/generateblocks/v1/regenerate_css_files',
+				path: '/dlxplugins/gb-extras/v1/regenerate_css_files',
 				method: 'POST',
 			} )
 				.then( ( result ) => {
