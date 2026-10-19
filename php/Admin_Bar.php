@@ -70,7 +70,7 @@ class Admin_Bar {
 				font-size: 18px;
 				line-height: 100%;
 				margin-top: 2px;
-				color: #fff;
+				color: #f0f0f1;
 			}'
 		);
 		wp_enqueue_style( 'gb-extras-admin-bar' );
