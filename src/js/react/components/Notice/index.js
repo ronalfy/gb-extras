@@ -20,27 +20,27 @@ const Notice = ( props ) => {
 		return <Icon width={ 16 } height={ 16 } fill="#6c757d" />;
 	};
 
-	const containerClasses = classNames( className, 'dlxgbhacks-admin__notice', {
-		'dlxgbhacks-admin__notice--has-icon': hasIcon(),
-		[ `dlxgbhacks-admin__notice-type--${ status }` ]: true,
-		[ `dlxgbhacks-admin__notice-appearance--inline` ]: inline,
-		[ `dlxgbhacks-admin__notice-appearance--block` ]: ! inline,
+	const containerClasses = classNames( className, 'mrshortcutsgb-admin__notice', {
+		'mrshortcutsgb-admin__notice--has-icon': hasIcon(),
+		[ `mrshortcutsgb-admin__notice-type--${ status }` ]: true,
+		[ `mrshortcutsgb-admin__notice-appearance--inline` ]: inline,
+		[ `mrshortcutsgb-admin__notice-appearance--block` ]: ! inline,
 	} );
 
 	const actions = [
 		{
-			label: __( 'Back to Top', 'wp-dlxgbhacks-comments' ),
-			url: '#dlxgbhacks-admin-header',
+			label: __( 'Back to Top', 'mediaron-block-shortcuts-for-gb' ),
+			url: '#mrshortcutsgb-admin-header',
 			variant: 'link',
-			className: 'dlxgbhacks-admin__notice-action dlxgbhacks-admin__notice-action--to-top',
+			className: 'mrshortcutsgb-admin__notice-action mrshortcutsgb-admin__notice-action--to-top',
 		} ];
 	return (
 		<div className={ containerClasses }>
 			<WPNotice isDismissible={ false } spokenMessage={ message } actions={ hasToTop ? actions : [] } { ...props }>
 				{ hasIcon() &&
-					<div className="dlxgbhacks-admin__notice-icon">{ getIcon( icon ) }</div>
+					<div className="mrshortcutsgb-admin__notice-icon">{ getIcon( icon ) }</div>
 				}
-				<div className="dlxgbhacks-admin__notice-message"><>{ message } { children } </></div>
+				<div className="mrshortcutsgb-admin__notice-message"><>{ message } { children } </></div>
 			</WPNotice>
 		</div>
 	);

@@ -1,4 +1,4 @@
-# AGENTS.md — GenerateBlocks Extras
+# AGENTS.md — MediaRon Block Shortcuts for GenerateBlocks
 
 Handoff notes for AI agents and fork maintainers. Prefer this file plus `docs/DEVELOPERS.md` over outdated plan docs.
 
@@ -10,11 +10,11 @@ Companion plugin for GenerateBlocks. Enhance the editor, settings, styles pipeli
 
 | Layer | Details |
 | --- | --- |
-| PHP | Namespace `DLXPlugins\GBExtras`, PSR-4 via Composer autoload (`lib/` → `php/`) |
-| Bootstrap | `gb-extras.php` loads Admin, Admin_Bar, Blocks; fires `gb_extras_loaded` |
-| Admin UI | React (`src/js/react/views/main/`) → webpack **`dist/`** (`gb-extras-admin.js` + CSS) |
+| PHP | Namespace `MRShortcutsGB`, PSR-4 via Composer autoload (`lib/` → `php/`) |
+| Bootstrap | `mediaron-block-shortcuts-for-gb.php` loads Admin, Admin_Bar, Blocks; fires `mrshortcutsgb_loaded` |
+| Admin UI | React (`src/js/react/views/main/`) → webpack **`dist/`** (`mrshortcuts-gb-admin.js` + CSS) |
 | Editor | `src/index.js`, pattern importer, block labels → webpack **`build/`** |
-| Commands | Three entrypoints under `src/js/blocks/commands/` → `build/gb-extras-commands-*.js` |
+| Commands | Three entrypoints under `src/js/blocks/commands/` → `build/mrshortcuts-gb-commands-*.js` |
 
 Do not confuse **`build/`** (editor/commands) with **`dist/`** (settings admin). `php/Admin.php` enqueues `dist/`; `php/Blocks.php` enqueues `build/`.
 
@@ -22,7 +22,7 @@ Do not confuse **`build/`** (editor/commands) with **`dist/`** (settings admin).
 
 | Path | Role |
 | --- | --- |
-| `gb-extras.php` | Plugin header, bootstrap, `gb_extras_loaded` |
+| `mediaron-block-shortcuts-for-gb.php` | Plugin header, bootstrap, `mrshortcutsgb_loaded` |
 | `php/Admin.php` | Settings submenu, AJAX get/save/reset, admin assets |
 | `php/Options.php` | Option key + defaults |
 | `php/Blocks.php` | Fonts, styles post types, REST, script enqueue, CSS regen |
@@ -35,13 +35,13 @@ Do not confuse **`build/`** (editor/commands) with **`dist/`** (settings admin).
 
 ## Stable identifiers (do not rename casually)
 
-- Options option: `dlx_gb_extras_options`
-- Admin page slug: `dlx-gb-extras` (screen: `generateblocks_page_dlx-gb-extras`)
-- AJAX actions: `dlx_gb_extras_{get,save,reset}_options`
-- REST namespace: `dlxplugins/gb-extras/v1`
-- Block name: `dlxplugins/gbhx-pattern-inserter`
-- Localized globals: `dlxGBExtrasAdmin`, `gbExtrasPatternInserter`
-- Text domain: `gb-extras`
+- Options option: `mrshortcutsgb_options`
+- Admin page slug: `mrshortcuts-gb` (screen: `generateblocks_page_mrshortcuts-gb`)
+- AJAX actions: `mrshortcutsgb_{get,save,reset}_options`
+- REST namespace: `mediaron/block-shortcuts-for-gb/v1`
+- Block name: `mediaron/mrshortcuts-pattern-inserter`
+- Localized globals: `mrshortcutsgbAdmin`, `mrshortcutsgbPatternInserter`
+- Text domain: `mediaron-block-shortcuts-for-gb`
 
 Renaming any of these needs a migration plan (saved options, content with the pattern block, enqueue handles).
 
@@ -73,7 +73,7 @@ Renaming any of these needs a migration plan (saved options, content with the pa
 
 - `.gitignore` ignores `dist/` and `package-lock.json` while runtime may need built `dist/` assets.
 - Dead / incomplete: `allowedGoogleFonts` option, unused `SaveSVGToAssetLibraryModal.js`, `enableDefaultHeadlineBlock` referenced in UI without a default in `Options.php`.
-- Misnamed leftovers: `wppic_block_file_extensions` filter in `Functions.php`; occasional wrong text domains (`alerts-dlx`, `dlx-gb-extras`).
+- Misnamed leftovers: `wppic_block_file_extensions` filter in `Functions.php`; occasional wrong text domains (`alerts-dlx`).
 - License wording: header GPL v2+, `package.json` GPL-3.0, `LICENSE` GPLv3.
 
 ## Useful docs

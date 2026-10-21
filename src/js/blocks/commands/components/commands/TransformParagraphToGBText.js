@@ -29,7 +29,7 @@ export function useTransformParagraphToGBTextCommand() {
 	}, [ paragraphTransformConfirmation ] );
 
 	useCommand( {
-		name: 'dlx-transform-paragraphs-to-gb-text',
+		name: 'mrshortcuts-gb-transform-paragraphs-to-gb-text',
 		label: 'GenerateBlocks: Convert Paragraphs to Text Blocks',
 		searchLabel: 'Convert/transform all core paragraph blocks to GenerateBlocks v2 text blocks',
 		keywords: [ 'generateblocks', 'transform', 'convert', 'paragraph', 'text', 'block', 'core', 'p', 'bulk' ],
@@ -62,4 +62,3 @@ export function useTransformParagraphToGBTextCommand() {
 		/>
 	);
 }
-

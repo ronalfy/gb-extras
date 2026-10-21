@@ -3,10 +3,10 @@
 /**
  * Admin class.
  *
- * @package GBExtras
+ * @package MRShortcutsGB
  */
 
-namespace DLXPlugins\GBExtras;
+namespace MRShortcutsGB;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	die( 'No direct access.' );
@@ -30,7 +30,7 @@ class Options {
 	 *
 	 * @var string
 	 */
-	protected static $options_key = 'dlx_gb_extras_options';
+	protected static $options_key = 'mrshortcutsgb_options';
 
 	/**
 	 * Update options via sanitization

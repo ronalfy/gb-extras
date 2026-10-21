@@ -1,6 +1,6 @@
-# GenerateBlocks Extras
+# MediaRon Block Shortcuts for GenerateBlocks
 
-GenerateBlocks Extras is a companion plugin for [GenerateBlocks](https://wordpress.org/plugins/generateblocks/). It adds editor shortcuts, migration helpers, settings integrations, and admin-bar tooling on top of GenerateBlocks (and GenerateBlocks Pro where noted).
+MediaRon Block Shortcuts for GenerateBlocks is a companion plugin for [GenerateBlocks](https://wordpress.org/plugins/generateblocks/). It adds editor shortcuts, migration helpers, settings integrations, and admin-bar tooling on top of GenerateBlocks (and GenerateBlocks Pro where noted).
 
 ## Requirements
 
@@ -27,8 +27,8 @@ Full detail: [docs/FEATURES.md](docs/FEATURES.md). Commands: [docs/COMMANDS.md](
 
 ## Installation
 
-1. Copy this plugin into `wp-content/plugins/gb-extras` (or install a release ZIP).
-2. Activate **GenerateBlocks**, then activate **GenerateBlocks Extras**.
+1. Copy this plugin into `wp-content/plugins/mediaron-block-shortcuts-for-gb` (or install a release ZIP).
+2. Activate **GenerateBlocks**, then activate **MediaRon Block Shortcuts for GenerateBlocks**.
 3. Open **GenerateBlocks → Extras** to configure options.
 
 ## Development
@@ -37,7 +37,7 @@ Full detail: [docs/FEATURES.md](docs/FEATURES.md). Commands: [docs/COMMANDS.md](
 npm install
 npm run start    # watch builds
 npm run build    # production build
-grunt            # package gb-extras.zip (optional)
+grunt            # package mediaron-block-shortcuts-for-gb.zip (optional)
 ```
 
 See [docs/DEVELOPERS.md](docs/DEVELOPERS.md) for architecture (`build/` vs `dist/`), options schema, hooks, and APIs.

@@ -1,6 +1,6 @@
 # Features
 
-GenerateBlocks Extras settings: **GenerateBlocks → Extras**.
+MediaRon Block Shortcuts for GenerateBlocks settings: **GenerateBlocks → Extras**.
 
 ## Free vs Pro
 
@@ -69,8 +69,8 @@ Also registered:
 
 ## Pattern Inserter
 
-- Block: `dlxplugins/gbhx-pattern-inserter`
-- Paste pattern markup, sideload remote images via REST `POST dlxplugins/gb-extras/v1/process_image`, regenerate unique IDs.
+- Block: `mediaron/mrshortcuts-pattern-inserter`
+- Paste pattern markup, sideload remote images via REST `POST mediaron/block-shortcuts-for-gb/v1/process_image`, regenerate unique IDs.
 
 ## Command palette
 

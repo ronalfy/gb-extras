@@ -10,11 +10,11 @@ $white: #ffffff;
 	font-family: 'Lato', 'Helvetica', 'Arial', sans-serif;
 }
 
-a.gb-extras-button.button-reset,
-a.gb-extras-button,
+a.mrshortcuts-gb-button.button-reset,
+a.mrshortcuts-gb-button,
 button.button-reset,
 button.button-reset:hover,
-a.gb-extras-button,
+a.mrshortcuts-gb-button,
 button.button-reset.components-button,
 button.button-reset.components-button:hover {
 	padding: 10px 30px;
@@ -35,11 +35,11 @@ button.button-reset.components-button:hover {
 }
 
 .template-chakra {
-	a.gb-extras-button.button-reset,
-	a.gb-extras-button,
+	a.mrshortcuts-gb-button.button-reset,
+	a.mrshortcuts-gb-button,
 	button.button-reset,
 	button.button-reset:hover,
-	a.gb-extras-button,
+	a.mrshortcuts-gb-button,
 	button.button-reset.components-button,
 	button.button-reset.components-button:hover {
 		border-radius: 0;
@@ -63,12 +63,12 @@ button.button-reset.components-button:hover {
 }
 
 /* Consolidate variants for ChakraUI options */
-.gb-extras-chakra-variants,
-.gb-extras-material-variants,
-.gb-extras-shoelace-variants,
-.gb-extras-chakra-mode,
-.gb-extras-material-mode,
-.gb-extras-bootstrap-mode {
+.mrshortcuts-gb-chakra-variants,
+.mrshortcuts-gb-material-variants,
+.mrshortcuts-gb-shoelace-variants,
+.mrshortcuts-gb-chakra-mode,
+.mrshortcuts-gb-material-mode,
+.mrshortcuts-gb-bootstrap-mode {
 	.components-button-group {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
@@ -83,12 +83,12 @@ button.button-reset.components-button:hover {
 	}
 }
 
-figure.gb-extras-alert {
+figure.mrshortcuts-gb-alert {
 	text-align: left;
 	box-sizing: border-box;
 }
-.gb-extras-content a,
-.gb-extras-content a:hover {
+.mrshortcuts-gb-content a,
+.mrshortcuts-gb-content a:hover {
 	color: inherit;
 	text-decoration: underline;
 }

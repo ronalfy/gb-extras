@@ -29,7 +29,6 @@ const CommandsBlockEditor = () => {
 	);
 };
 
-registerPlugin( 'dlxgb-commands-block-editor', {
+registerPlugin( 'mrshortcuts-gb-commands-block-editor', {
 	render: CommandsBlockEditor,
 } );
-

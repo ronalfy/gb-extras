@@ -108,7 +108,7 @@ const SnackPop = ( props ) => {
 					setNotificationOptions( {
 						type: 'critical',
 						message: error.message,
-						title: __( 'An Error Has Occurred', 'gb-extras' ),
+						title: __( 'An Error Has Occurred', 'mediaron-block-shortcuts-for-gb' ),
 						isDismissable: false,
 						isBusy: false,
 						isPersistent: true,
@@ -149,7 +149,7 @@ const SnackPop = ( props ) => {
 		const actions = [];
 		if ( notificationOptions.type === 'success' ) {
 			actions.push( {
-				label: __( 'Back to Top', 'gb-extras' ),
+				label: __( 'Back to Top', 'mediaron-block-shortcuts-for-gb' ),
 				url: '#wpadminbar',
 				onClick: () => {
 					window.scrollTo( 0, 0 );
@@ -158,7 +158,7 @@ const SnackPop = ( props ) => {
 				},
 				variant: 'link',
 				className:
-					'dlx-gb-extras-admin__notice-action dlx-gb-extras-admin__notice-action--to-top',
+					'mrshortcuts-gb-admin__notice-action mrshortcuts-gb-admin__notice-action--to-top',
 			} );
 		}
 		return actions;
@@ -168,9 +168,9 @@ const SnackPop = ( props ) => {
 		return (
 			<WPSnackBar
 				className={ classnames(
-					`dlx-gb-extras-snackbar dlx-gb-extras-snackbar-${ notificationOptions.type }`,
+					`mrshortcuts-gb-snackbar mrshortcuts-gb-snackbar-${ notificationOptions.type }`,
 					{
-						'dlx-gb-extras-snackbar-loading': isBusy,
+						'mrshortcuts-gb-snackbar-loading': isBusy,
 					}
 				) }
 				actions={ getSnackbarActions() }
@@ -188,12 +188,12 @@ const SnackPop = ( props ) => {
 			return (
 				<Modal
 					className={ classnames(
-						`dlx-gb-extras-modal dlx-gb-extras-modal-${ notificationOptions.type }`,
+						`mrshortcuts-gb-modal mrshortcuts-gb-modal-${ notificationOptions.type }`,
 						{
-							'dlx-gb-extras-modal-loading': isBusy,
+							'mrshortcuts-gb-modal-loading': isBusy,
 						}
 					) }
-					bodyOpenClassName={ 'dlx-gb-extras-modal-body-open' }
+					bodyOpenClassName={ 'mrshortcuts-gb-modal-body-open' }
 					title={ notificationOptions.title }
 					onRequestClose={ () => {
 						setIsModalVisible( false );
@@ -209,7 +209,7 @@ const SnackPop = ( props ) => {
 						icon={ getIcon }
 						inline={ false }
 					/>
-					<div className="dlx-gb-extras-modal-button-group">
+					<div className="mrshortcuts-gb-modal-button-group">
 						<Button
 							className="button button-error"
 							variant="secondary"
@@ -217,7 +217,7 @@ const SnackPop = ( props ) => {
 								setIsModalVisible( false );
 							} }
 						>
-							{ __( 'OK', 'gb-extras' ) }
+							{ __( 'OK', 'mediaron-block-shortcuts-for-gb' ) }
 						</Button>
 					</div>
 				</Modal>

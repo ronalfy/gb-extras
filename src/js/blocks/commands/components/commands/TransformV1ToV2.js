@@ -19,7 +19,7 @@ export function useTransformV1ToV2Command() {
 	const [ blockTransformConfirmation, setBlockTransformConfirmation ] = useState( false );
 	const [ transforming, setTransforming ] = useState( false );
 	useCommand( {
-		name: 'dlx-transform-v1-blocks-to-v2',
+		name: 'mrshortcuts-gb-transform-v1-blocks-to-v2',
 		label: 'GenerateBlocks: Convert v1 Blocks to v2 (Experimental)',
 		searchLabel: 'Transform/convert all GB GenerateBlocks V1 Blocks to V2 (Experimental)',
 		keywords: [ 'generateblocks', 'transform', 'convert', 'v1', 'v2', 'version', 'migrate', 'upgrade', 'experimental' ],
@@ -28,8 +28,8 @@ export function useTransformV1ToV2Command() {
 			setBlockTransformConfirmation( true );
 		},
 		disabled:
-			typeof gbExtrasPatternInserter !== 'undefined' &&
-			'false' === ( gbExtrasPatternInserter.enableV1Transformations || 'false' ),
+			typeof mrshortcutsgbPatternInserter !== 'undefined' &&
+			'false' === ( mrshortcutsgbPatternInserter.enableV1Transformations || 'false' ),
 	} );
 
 	const handleConfirm = async() => {
@@ -52,4 +52,3 @@ export function useTransformV1ToV2Command() {
 		/>
 	);
 }
-
