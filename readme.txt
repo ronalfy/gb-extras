@@ -1,7 +1,7 @@
 === GB Extras ===
 Tags: blocks, gutenberg, block, patterns, styles
 Requires at least: 6.9
-Tested up to: WordPress 7.1
+Tested up to: 7.1
 Stable tag: 3.0.0
 Requires PHP: 8.0
 License: GPLv2 or later
@@ -22,6 +22,8 @@ GB Extras is an add-on for GenerateBlocks that brings additional functionality a
 7. **Unique ID Generation**: Avoid style conflicts by generating new unique IDs for duplicated or copied blocks.
 
 GB Extras is perfect for users looking to streamline their GenerateBlocks workflow and add more versatility to their block editor.
+
+> The source code for this plugin <a href="https://github.com/ronalfy/gb-extras">is available on GitHub</a>.
 
 == Installation ==
 
