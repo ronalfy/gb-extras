@@ -116,7 +116,7 @@ class Functions {
 	 * @return null|string Current admin tab.
 	 */
 	public static function get_admin_tab() {
-		$tab = filter_input( INPUT_GET, 'tab', FILTER_DEFAULT );
+		$tab = sanitize_text_field( wp_unslash( filter_input( INPUT_GET, 'tab', FILTER_DEFAULT ) ) );
 		if ( $tab && is_string( $tab ) ) {
 			return sanitize_text_field( sanitize_title( $tab ) );
 		}

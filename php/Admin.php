@@ -86,9 +86,9 @@ class Admin {
 	 */
 	public function ajax_save_options() {
 		// Get form data.
-		$form_data = filter_input( INPUT_POST, 'formData', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
+		$form_data = Functions::sanitize_array_recursive( wp_unslash( filter_input( INPUT_POST, 'formData', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY ) ) );
 
-		$nonce = $form_data['saveNonce'] ?? false;
+		$nonce = isset( $form_data['saveNonce'] ) ? sanitize_text_field( $form_data['saveNonce'] ) : false;
 		if ( ! wp_verify_nonce( $nonce, 'dlx-gb-extras-admin-save-options' ) || ! current_user_can( 'manage_options' ) ) {
 			wp_send_json_error(
 				array(
@@ -156,9 +156,9 @@ class Admin {
 	 */
 	public function ajax_reset_options() {
 		// Get form data.
-		$form_data = filter_input( INPUT_POST, 'formData', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
+		$form_data = Functions::sanitize_array_recursive( wp_unslash( filter_input( INPUT_POST, 'formData', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY ) ) );
 
-		$nonce = $form_data['resetNonce'] ?? false;
+		$nonce = isset( $form_data['resetNonce'] ) ? sanitize_text_field( $form_data['resetNonce'] ) : false;
 		if ( ! wp_verify_nonce( $nonce, 'dlx-gb-extras-admin-reset-options' ) || ! current_user_can( 'manage_options' ) ) {
 			wp_send_json_error(
 				array(
@@ -202,7 +202,7 @@ class Admin {
 	 */
 	public function ajax_get_options() {
 		// Get nonce.
-		$nonce = sanitize_text_field( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ) );
+		$nonce = sanitize_text_field( wp_unslash( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ) ) );
 
 		// Verify nonce.
 		$nonce_action = 'dlx-gb-extras-admin-get-options';
