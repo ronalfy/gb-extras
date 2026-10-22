@@ -1,5 +1,5 @@
 {
-    "name": "dlxplugins/gb-extras",
+    "name": "mediaron/block-shortcuts-for-gb",
     "description": "GenerateBlocks enhancements.",
     "type": "project",
     "license": "GPL",
@@ -15,7 +15,7 @@
     },
       "autoload": {
         "psr-4": {
-            "DLXPlugins\\GBExtras\\": "php/"
+            "MRShortcutsGB\\": "php/"
         }
     }
 }

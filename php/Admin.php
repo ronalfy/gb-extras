@@ -2,10 +2,10 @@
 /**
  * Admin class.
  *
- * @package GBExtras
+ * @package MRShortcutsGB
  */
 
-namespace DLXPlugins\GBExtras;
+namespace MRShortcutsGB;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -26,18 +26,18 @@ class Admin {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 
 		// For retrieving the options.
-		add_action( 'wp_ajax_dlx_gb_extras_get_options', array( $this, 'ajax_get_options' ) );
+		add_action( 'wp_ajax_mrshortcutsgb_get_options', array( $this, 'ajax_get_options' ) );
 
 		// For saving the options.
-		add_action( 'wp_ajax_dlx_gb_extras_save_options', array( $this, 'ajax_save_options' ) );
+		add_action( 'wp_ajax_mrshortcutsgb_save_options', array( $this, 'ajax_save_options' ) );
 
 		// For resetting the options.
-		add_action( 'wp_ajax_dlx_gb_extras_reset_options', array( $this, 'ajax_reset_options' ) );
+		add_action( 'wp_ajax_mrshortcutsgb_reset_options', array( $this, 'ajax_reset_options' ) );
 
 		// For initializing settings links on the plugins screen.
 		add_action( 'admin_init', array( $this, 'init_settings_links' ) );
 
-		// Load GenerateBlocks settings CSS / dashboard body class on the Extras screen.
+		// Load GenerateBlocks settings CSS / dashboard body class on the Shortcuts screen.
 		add_filter( 'generateblocks_dashboard_screens', array( $this, 'add_dashboard_screen' ) );
 	}
 
@@ -50,7 +50,7 @@ class Admin {
 	 * @return array
 	 */
 	public function add_dashboard_screen( $screens ) {
-		$screens[] = 'generateblocks_page_dlx-gb-extras';
+		$screens[] = 'generateblocks_page_mrshortcuts-gb';
 		return $screens;
 	}
 
@@ -59,7 +59,7 @@ class Admin {
 	 */
 	public function init_settings_links() {
 		$prefix = Functions::is_multisite() ? 'network_admin_' : '';
-		add_action( $prefix . 'plugin_action_links_' . plugin_basename( GB_EXTRAS_FILE ), array( $this, 'plugin_settings_link' ) );
+		add_action( $prefix . 'plugin_action_links_' . plugin_basename( MRSHORTCUTSGB_FILE ), array( $this, 'plugin_settings_link' ) );
 	}
 
 	/**
@@ -72,7 +72,7 @@ class Admin {
 	 */
 	public function plugin_settings_link( $settings ) {
 		$setting_links = array(
-			'settings' => sprintf( '<a href="%s">%s</a>', esc_url( Functions::get_settings_url() ), esc_html__( 'Settings', 'gb-extras' ) ),
+			'settings' => sprintf( '<a href="%s">%s</a>', esc_url( Functions::get_settings_url() ), esc_html__( 'Settings', 'mediaron-block-shortcuts-for-gb' ) ),
 		);
 		if ( ! is_array( $settings ) ) {
 			return $setting_links;
@@ -89,13 +89,13 @@ class Admin {
 		$form_data = Functions::sanitize_array_recursive( wp_unslash( filter_input( INPUT_POST, 'formData', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY ) ) );
 
 		$nonce = isset( $form_data['saveNonce'] ) ? sanitize_text_field( $form_data['saveNonce'] ) : false;
-		if ( ! wp_verify_nonce( $nonce, 'dlx-gb-extras-admin-save-options' ) || ! current_user_can( 'manage_options' ) ) {
+		if ( ! wp_verify_nonce( $nonce, 'mrshortcuts-gb-admin-save-options' ) || ! current_user_can( 'manage_options' ) ) {
 			wp_send_json_error(
 				array(
-					'message'     => __( 'Nonce or permission verification failed.', 'gb-extras' ),
+					'message'     => __( 'Nonce or permission verification failed.', 'mediaron-block-shortcuts-for-gb' ),
 					'type'        => 'critical',
 					'dismissable' => true,
-					'title'       => __( 'Error', 'gb-extras' ),
+					'title'       => __( 'Error', 'mediaron-block-shortcuts-for-gb' ),
 				)
 			);
 		}
@@ -144,7 +144,7 @@ class Admin {
 		// Send success message.
 		wp_send_json_success(
 			array(
-				'message'     => __( 'Options saved.', 'gb-extras' ),
+				'message'     => __( 'Options saved.', 'mediaron-block-shortcuts-for-gb' ),
 				'type'        => 'success',
 				'dismissable' => true,
 			)
@@ -159,13 +159,13 @@ class Admin {
 		$form_data = Functions::sanitize_array_recursive( wp_unslash( filter_input( INPUT_POST, 'formData', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY ) ) );
 
 		$nonce = isset( $form_data['resetNonce'] ) ? sanitize_text_field( $form_data['resetNonce'] ) : false;
-		if ( ! wp_verify_nonce( $nonce, 'dlx-gb-extras-admin-reset-options' ) || ! current_user_can( 'manage_options' ) ) {
+		if ( ! wp_verify_nonce( $nonce, 'mrshortcuts-gb-admin-reset-options' ) || ! current_user_can( 'manage_options' ) ) {
 			wp_send_json_error(
 				array(
-					'message'     => __( 'Nonce or permission verification failed.', 'gb-extras' ),
+					'message'     => __( 'Nonce or permission verification failed.', 'mediaron-block-shortcuts-for-gb' ),
 					'type'        => 'error',
 					'dismissable' => true,
-					'title'       => __( 'Error', 'gb-extras' ),
+					'title'       => __( 'Error', 'mediaron-block-shortcuts-for-gb' ),
 				)
 			);
 		}
@@ -189,7 +189,7 @@ class Admin {
 		// Send success message.
 		wp_send_json_success(
 			array(
-				'message'     => __( 'Options reset.', 'gb-extras' ),
+				'message'     => __( 'Options reset.', 'mediaron-block-shortcuts-for-gb' ),
 				'type'        => 'success',
 				'dismissable' => true,
 				'formData'    => $default_options,
@@ -205,14 +205,14 @@ class Admin {
 		$nonce = sanitize_text_field( wp_unslash( filter_input( INPUT_POST, 'nonce', FILTER_DEFAULT ) ) );
 
 		// Verify nonce.
-		$nonce_action = 'dlx-gb-extras-admin-get-options';
+		$nonce_action = 'mrshortcuts-gb-admin-get-options';
 		if ( ! wp_verify_nonce( $nonce, $nonce_action ) || ! current_user_can( 'manage_options' ) ) {
 			wp_send_json_error(
 				array(
-					'message'     => __( 'Nonce or permission verification failed.', 'gb-extras' ),
+					'message'     => __( 'Nonce or permission verification failed.', 'mediaron-block-shortcuts-for-gb' ),
 					'type'        => 'error',
 					'dismissable' => true,
-					'title'       => __( 'Error', 'gb-extras' ),
+					'title'       => __( 'Error', 'mediaron-block-shortcuts-for-gb' ),
 				)
 			);
 		}
@@ -226,10 +226,10 @@ class Admin {
 	public function add_admin_menu() {
 		add_submenu_page(
 			'generateblocks',
-			__( 'Extras', 'gb-extras' ),
-			__( 'Extras', 'gb-extras' ),
+			__( 'Shortcuts', 'mediaron-block-shortcuts-for-gb' ),
+			__( 'Shortcuts', 'mediaron-block-shortcuts-for-gb' ),
 			'manage_options',
-			'dlx-gb-extras',
+			'mrshortcuts-gb',
 			array( $this, 'admin_page' ),
 			99
 		);
@@ -241,15 +241,15 @@ class Admin {
 	 * @param string $hook The current admin page.
 	 */
 	public function enqueue_scripts( $hook ) {
-		if ( 'generateblocks_page_dlx-gb-extras' !== $hook ) {
+		if ( 'generateblocks_page_mrshortcuts-gb' !== $hook ) {
 			return;
 		}
 
 		// Enqueue main scripts.
-		$deps = require Functions::get_plugin_dir( 'dist/gb-extras-admin.asset.php' );
+		$deps = require Functions::get_plugin_dir( 'dist/mrshortcuts-gb-admin.asset.php' );
 		wp_enqueue_script(
-			'dlx-gb-extras-admin',
-			Functions::get_plugin_url( 'dist/gb-extras-admin.js' ),
+			'mrshortcuts-gb-admin',
+			Functions::get_plugin_url( 'dist/mrshortcuts-gb-admin.js' ),
 			$deps['dependencies'],
 			$deps['version'],
 			true
@@ -279,13 +279,13 @@ class Admin {
 		}
 
 		wp_localize_script(
-			'dlx-gb-extras-admin',
-			'dlxGBExtrasAdmin',
+			'mrshortcuts-gb-admin',
+			'mrshortcutsgbAdmin',
 			array(
-				'getNonce'     => wp_create_nonce( 'dlx-gb-extras-admin-get-options' ),
-				'saveNonce'    => wp_create_nonce( 'dlx-gb-extras-admin-save-options' ),
-				'resetNonce'   => wp_create_nonce( 'dlx-gb-extras-admin-reset-options' ),
-				'previewNonce' => wp_create_nonce( 'dlx-gb-extras-admin-preview' ),
+				'getNonce'     => wp_create_nonce( 'mrshortcuts-gb-admin-get-options' ),
+				'saveNonce'    => wp_create_nonce( 'mrshortcuts-gb-admin-save-options' ),
+				'resetNonce'   => wp_create_nonce( 'mrshortcuts-gb-admin-reset-options' ),
+				'previewNonce' => wp_create_nonce( 'mrshortcuts-gb-admin-preview' ),
 				'ajaxurl'      => admin_url( 'admin-ajax.php' ),
 				'postTypes'    => $post_types,
 				'isProActive'  => Functions::is_generateblocks_pro_active(),
@@ -294,8 +294,8 @@ class Admin {
 
 		// Enqueue admin styles.
 		wp_enqueue_style(
-			'dlx-gb-extras-admin-css',
-			Functions::get_plugin_url( 'dist/gb-extras-admin-css.css' ),
+			'mrshortcuts-gb-admin-css',
+			Functions::get_plugin_url( 'dist/mrshortcuts-gb-admin-css.css' ),
 			array(),
 			Functions::get_plugin_version(),
 			'all'
@@ -307,10 +307,10 @@ class Admin {
 	 */
 	public function admin_page() {
 		?>
-		<div class="wrap gblocks-dashboard-wrap dlx-gb-extras-admin-wrap">
+		<div class="wrap gblocks-dashboard-wrap mrshortcuts-gb-admin-wrap">
 			<div class="generateblocks-settings-area">
 				<div class="generateblocks-settings-main">
-					<div id="dlx-gb-extras"></div>
+					<div id="mrshortcuts-gb"></div>
 				</div>
 			</div>
 		</div>

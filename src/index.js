@@ -83,7 +83,7 @@ const ClearIcon = (props) => {
 	 *
 	 * Updated for v2 blocks.
 	 */
-	registerPlugin('dlx-gb-extras-wrap-container', {
+	registerPlugin('mrshortcuts-gb-wrap-container', {
 		render: () => {
 			const [clientIds, setClientIds] = useState([]);
 
@@ -151,7 +151,7 @@ const ClearIcon = (props) => {
 	 *
 	 * For v1 blocks.
 	 */
-	registerPlugin('dlx-gb-extras-generate-unique-ids', {
+	registerPlugin('mrshortcuts-gb-generate-unique-ids', {
 		render: () => {
 			const { selectedBlock } = useSelect((select) => {
 				return {
@@ -192,7 +192,7 @@ const ClearIcon = (props) => {
 	/**
 	 * Clear block styles for v2 blocks.
 	 */
-	registerPlugin('dlx-gb-extras-clear-block-styles', {
+	registerPlugin('mrshortcuts-gb-clear-block-styles', {
 		render: () => {
 			const { selectedBlock } = useSelect((select) => {
 				return {
@@ -234,7 +234,7 @@ const ClearIcon = (props) => {
 	 *
 	 * Updated to use the v2 blocks.
 	 */
-	registerPlugin('dlx-gb-extras-unwrap-container', {
+	registerPlugin('mrshortcuts-gb-unwrap-container', {
 		render: () => {
 			const selectedBlock = useSelect((select) => {
 				return select('core/block-editor').getSelectedBlock();
@@ -292,7 +292,7 @@ const ClearIcon = (props) => {
 	 *
 	 * Updated to use the v2 blocks.
 	 */
-	registerPlugin('dlx-gb-extras-convert-shape-to-link', {
+	registerPlugin('mrshortcuts-gb-convert-shape-to-link', {
 		render: () => {
 			const selectedBlock = useSelect((select) => {
 				return select('core/block-editor').getSelectedBlock();
@@ -333,7 +333,7 @@ const ClearIcon = (props) => {
 	/**
 	 * Convert selected block and its descendants from v1 to v2 (contextual).
 	 */
-	registerPlugin('dlx-gb-extras-convert-to-v2-contextual', {
+	registerPlugin('mrshortcuts-gb-convert-to-v2-contextual', {
 		render: () => {
 			const selectedBlock = useSelect((selectStore) => {
 				return selectStore('core/block-editor').getSelectedBlock();
@@ -347,8 +347,8 @@ const ClearIcon = (props) => {
 				return null;
 			}
 			if (
-				typeof gbExtrasPatternInserter !== 'undefined' &&
-				'false' === (gbExtrasPatternInserter.enableV1Transformations || 'false')
+				typeof mrshortcutsgbPatternInserter !== 'undefined' &&
+				'false' === (mrshortcutsgbPatternInserter.enableV1Transformations || 'false')
 			) {
 				return null;
 			}
@@ -441,7 +441,7 @@ const ClearIcon = (props) => {
 	 *
 	 * Updated for v2 blocks.
 	 */
-	if (gbExtrasPatternInserter.enableMarkdownToHeadlineBlock) {
+	if (mrshortcutsgbPatternInserter.enableMarkdownToHeadlineBlock) {
 		wp.hooks.addFilter(
 			'blocks.registerBlockType',
 			'generateblocks/transform/markdown',

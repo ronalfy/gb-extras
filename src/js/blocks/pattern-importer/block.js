@@ -41,28 +41,28 @@ const uniqueIds = [];
 // For storing the number of images imported.
 let imageCount = 0;
 
-const PatternImporter = (props) => {
+const PatternImporter = ( props ) => {
 	// Shortcuts.
 	const { attributes, setAttributes, clientId } = props;
 
-	const [patternText, setPatternText] = useState('');
-	const [patternImages, setPatternImages] = useState([]);
-	const [importing, setImporting] = useState(false);
-	const [imageProcessingCount, setImageProcessingCount] = useState(0);
-	const [doNotImportRemoteImages, setDoNotImportRemoteImages] = useState(false);
+	const [ patternText, setPatternText ] = useState( '' );
+	const [ patternImages, setPatternImages ] = useState( [] );
+	const [ importing, setImporting ] = useState( false );
+	const [ imageProcessingCount, setImageProcessingCount ] = useState( 0 );
+	const [ doNotImportRemoteImages, setDoNotImportRemoteImages ] = useState( false );
 
-	const { replaceBlock } = useDispatch(store);
+	const { replaceBlock } = useDispatch( store );
 
-	const onPatternSubmit = async () => {
-		setImporting(true);
-		const processImage = async (imgUrl, imgAlt) => {
+	const onPatternSubmit = async() => {
+		setImporting( true );
+		const processImage = async( imgUrl, imgAlt ) => {
 			const response = await SendCommand(
-				gbExtrasPatternInserter.restNonce,
+				mrshortcutsgbPatternInserter.restNonce,
 				{
 					imgUrl,
 					imgAlt,
 				},
-				gbExtrasPatternInserter.restUrl + '/process_image'
+				mrshortcutsgbPatternInserter.restUrl + '/process_image'
 			);
 			return response;
 		};
@@ -72,88 +72,88 @@ const PatternImporter = (props) => {
 		 *
 		 * @param {string} pattern The pattern.
 		 */
-		const importPattern = async (pattern) => {
+		const importPattern = async( pattern ) => {
 			try {
-				const patternBlocks = parse(pattern);
+				const patternBlocks = parse( pattern );
 
 				const newPatternBlocks = [];
 
-				for (let i = 0; i < patternBlocks.length; i++) {
-					newPatternBlocks.push(replaceUniqueIds(patternBlocks[i]));
+				for ( let i = 0; i < patternBlocks.length; i++ ) {
+					newPatternBlocks.push( replaceUniqueIds( patternBlocks[ i ] ) );
 				}
 
-				await replaceBlock(clientId, newPatternBlocks);
+				await replaceBlock( clientId, newPatternBlocks );
 
 				// Insert block in place of this one.
 				//replaceInnerBlocks( clientId, patternBlocks );
-			} catch (error) {
-				console.error(error);
+			} catch ( error ) {
+				console.error( error );
 			}
 		};
 
-		const matches = [...patternText.matchAll(imageUrlRegex)];
+		const matches = [ ...patternText.matchAll( imageUrlRegex ) ];
 		const imagesToProcess = [];
 		let localPatternText = patternText;
 
-		if (!doNotImportRemoteImages) {
+		if ( ! doNotImportRemoteImages ) {
 			// If there are matches, we need to process them.
-			if (matches.length) {
-				matches.forEach((match) => {
+			if ( matches.length ) {
+				matches.forEach( ( match ) => {
 					// Push if not a duplicate.
-					if (!imagesToProcess.includes(match[0])) {
-						imagesToProcess.push(match[0]);
+					if ( ! imagesToProcess.includes( match[ 0 ] ) ) {
+						imagesToProcess.push( match[ 0 ] );
 					}
-				});
-				setPatternImages(imagesToProcess);
+				} );
+				setPatternImages( imagesToProcess );
 			}
 
 			const imagesProcessed = [];
 			let imagePromises = [];
 
 			// Let's loop through images and process.
-			if (imagesToProcess.length) {
-				imagePromises = imagesToProcess.map((image) => {
+			if ( imagesToProcess.length ) {
+				imagePromises = imagesToProcess.map( ( image ) => {
 					try {
-						const response = processImage(image, '');
-						response.then((restResponse) => {
-							imagesProcessed.push(image);
+						const response = processImage( image, '' );
+						response.then( ( restResponse ) => {
+							imagesProcessed.push( image );
 							const { data, success } = restResponse.data;
-							if (success) {
+							if ( success ) {
 								imageCount++;
-								setImageProcessingCount(imageCount);
+								setImageProcessingCount( imageCount );
 
 								// Get the image URL and replace in pattern.
 								const newImageUrl = data.attachmentUrl;
 
 								// Replace old URL with new URL.
-								localPatternText = localPatternText.replace(image, newImageUrl);
-								setPatternText(localPatternText);
+								localPatternText = localPatternText.replace( image, newImageUrl );
+								setPatternText( localPatternText );
 							} else {
 								// Fail silently.
 								imageCount++;
-								setImageProcessingCount(imageCount);
+								setImageProcessingCount( imageCount );
 							}
-						}).catch((error) => {
+						} ).catch( ( error ) => {
 							// Fail silently.
 							imageCount++;
-							setImageProcessingCount(imageCount);
-						});
+							setImageProcessingCount( imageCount );
+						} );
 						return response;
-					} catch (error) {
+					} catch ( error ) {
 						// Fail silently.
 						imageCount++;
-						setImageProcessingCount(imageCount);
+						setImageProcessingCount( imageCount );
 					}
-				});
+				} );
 			}
 
-			Promise.all(imagePromises).then(() => {
-				importPattern(localPatternText);
-			}).catch((error) => {
-				importPattern(localPatternText);
-			});
+			Promise.all( imagePromises ).then( () => {
+				importPattern( localPatternText );
+			} ).catch( ( error ) => {
+				importPattern( localPatternText );
+			} );
 		} else {
-			importPattern(localPatternText);
+			importPattern( localPatternText );
 		}
 	};
 
@@ -161,50 +161,50 @@ const PatternImporter = (props) => {
 		<>
 			<Card className="dlx-pattern-inserter">
 				<CardHeader>
-					{__('Pattern Importer', 'gb-extras')}
+					{ __( 'Pattern Importer', 'mr-block-shortcuts-gb' ) }
 				</CardHeader>
 				<CardBody>
 					<TextareaControl
-						label={__('Paste your pattern here', 'gb-extras')}
-						placeholder={__('Paste your pattern here', 'gb-extras')}
-						value={patternText}
-						onChange={(value) => setPatternText(value)}
-						disabled={importing}
+						label={ __( 'Paste your pattern here', 'mr-block-shortcuts-gb' ) }
+						placeholder={ __( 'Paste your pattern here', 'mr-block-shortcuts-gb' ) }
+						value={ patternText }
+						onChange={ ( value ) => setPatternText( value ) }
+						disabled={ importing }
 					/>
 					<CheckboxControl
-						label={__('Do not import remote images', 'dlx-pattern-wrangler')}
-						checked={doNotImportRemoteImages}
-						onChange={(value) => setDoNotImportRemoteImages(value)}
-						disabled={importing}
-						className="gb-extras-card-checkbox"
+						label={ __( 'Do not import remote images', 'dlx-pattern-wrangler' ) }
+						checked={ doNotImportRemoteImages }
+						onChange={ ( value ) => setDoNotImportRemoteImages( value ) }
+						disabled={ importing }
+						className="mr-block-shortcuts-gb-card-checkbox"
 					/>
 				</CardBody>
 				<CardFooter>
 					<Button
 						variant="primary"
-						disabled={!patternText || importing}
-						onClick={onPatternSubmit}
+						disabled={ ! patternText || importing }
+						onClick={ onPatternSubmit }
 					>
-						{__('Import', 'gb-extras')}
+						{ __( 'Import', 'mr-block-shortcuts-gb' ) }
 					</Button>
-					{importing && (
+					{ importing && (
 						<span className="gb-pattern-importer-image">
 							<Spinner />
 							{
-								`Processing ${imageProcessingCount} of ${patternImages.length} images.`
+								`Processing ${ imageProcessingCount } of ${ patternImages.length } images.`
 							}
 						</span>
-					)}
+					) }
 				</CardFooter>
 			</Card>
 		</>
 	);
 
-	const blockProps = useBlockProps({ className: 'dlx-pattern-inserter-wrapper' });
+	const blockProps = useBlockProps( { className: 'dlx-pattern-inserter-wrapper' } );
 
 	return (
 		<>
-			<div {...blockProps}>{block}</div>
+			<div { ...blockProps }>{ block }</div>
 		</>
 	);
 };

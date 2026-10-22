@@ -38,7 +38,7 @@ const SaveResetButtons = ( props ) => {
 	 * Save the options by setting promise as state.
 	 */
 	const saveOptions = async () => {
-		const saveOptionsPromise = SendCommand( 'dlx_gb_extras_save_options', { formData: formValues } );
+		const saveOptionsPromise = SendCommand( 'mrshortcutsgb_save_options', { formData: formValues } );
 		setSavePromise( saveOptionsPromise );
 		setSaving( true );
 		await saveOptionsPromise;
@@ -49,7 +49,7 @@ const SaveResetButtons = ( props ) => {
 	 * Reset the options by setting promise as state.
 	 */
 	const resetOptions = async () => {
-		const resetOptionsPromise = SendCommand( 'dlx_gb_extras_reset_options', { formData: formValues } );
+		const resetOptionsPromise = SendCommand( 'mrshortcutsgb_reset_options', { formData: formValues } );
 		setResetPromise( resetOptionsPromise );
 		setResetting( true );
 		const resetResponse = await resetOptionsPromise;
@@ -79,30 +79,30 @@ const SaveResetButtons = ( props ) => {
 
 	const getSaveText = () => {
 		if ( saving ) {
-			return __( 'Saving…', 'gb-extras' );
+			return __( 'Saving…', 'mediaron-block-shortcuts-for-gb' );
 		}
 		if ( isSaved ) {
-			return __( 'Saved', 'gb-extras' );
+			return __( 'Saved', 'mediaron-block-shortcuts-for-gb' );
 		}
-		return __( 'Save Options', 'gb-extras' );
+		return __( 'Save Options', 'mediaron-block-shortcuts-for-gb' );
 	};
 
 	const getResetText = () => {
 		if ( resetting ) {
-			return __( 'Resetting to Defaults…', 'gb-extras' );
+			return __( 'Resetting to Defaults…', 'mediaron-block-shortcuts-for-gb' );
 		}
 		if ( isReset ) {
-			return __( 'Options Restored to Defaults', 'gb-extras' );
+			return __( 'Options Restored to Defaults', 'mediaron-block-shortcuts-for-gb' );
 		}
-		return __( 'Reset to Defaults', 'gb-extras' );
+		return __( 'Reset to Defaults', 'mediaron-block-shortcuts-for-gb' );
 	};
 
 	return (
 		<>
-			<div className="dlx-gb-extras-admin-buttons">
+			<div className="mrshortcuts-gb-admin-buttons">
 				<Button
 					className={ classNames(
-						'dlx-gb_extras__btn dlx-gb_extras__btn-primary dlx-gb_extras__btn--icon-right',
+						'mrshortcuts-gb__btn mrshortcuts-gb__btn-primary mrshortcuts-gb__btn--icon-right',
 						{ 'has-error': hasErrors() },
 						{ 'has-icon': saving || isSaved },
 						{ 'is-saving': saving && ! isSaved },
@@ -125,7 +125,7 @@ const SaveResetButtons = ( props ) => {
 				/>
 				<Button
 					className={ classNames(
-						'dlx-gb_extras__btn dlx-gb_extras__btn-danger dlx-gb_extras__btn--icon-right',
+						'mrshortcuts-gb__btn mrshortcuts-gb__btn-danger mrshortcuts-gb__btn--icon-right',
 						{ 'has-icon': resetting },
 						{ 'is-resetting': { resetting } },
 					) }
@@ -143,20 +143,20 @@ const SaveResetButtons = ( props ) => {
 					} }
 				/>
 			</div>
-			<div className="dlx-gb-extras-admin-notices-bottom">
+			<div className="mrshortcuts-gb-admin-notices-bottom">
 				<SnackPop
 					ajaxOptions={ savePromise }
-					loadingMessage={ __( 'Saving Options…', 'gb-extras' ) }
+					loadingMessage={ __( 'Saving Options…', 'mediaron-block-shortcuts-for-gb' ) }
 				/>
 				<SnackPop
 					ajaxOptions={ resetPromise }
-					loadingMessage={ __( 'Resetting to defaults…', 'gb-extras' ) }
+					loadingMessage={ __( 'Resetting to defaults…', 'mediaron-block-shortcuts-for-gb' ) }
 				/>
 				{ hasErrors() && (
 					<Notice
 						message={ __(
 							'There are form validation errors. Please correct them above.',
-							'gb-extras',
+							'mediaron-block-shortcuts-for-gb',
 						) }
 						status="error"
 						politeness="polite"

@@ -1,27 +1,27 @@
 <?php
 /**
- * Plugin Name:       GB Extras
+ * Plugin Name:       MediaRon Block Shortcuts for GenerateBlocks
  * Description:       A collection of enhancements for the GenerateBlocks plugins.
- * Version:           3.0.0
+ * Version:           1.0.0
  * Requires at least: 6.9
  * Requires PHP:      8.0
  * Author:            Ronald Huereca
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       gb-extras
+ * Text Domain:       mediaron-block-shortcuts-for-gb
  * Requires Plugins: generateblocks
  *
- * @package GBExtras
+ * @package MRShortcutsGB
  */
 
-namespace DLXPlugins\GBExtras;
+namespace MRShortcutsGB;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'GB_EXTRAS_VERSION', '3.0.0' );
-define( 'GB_EXTRAS_FILE', __FILE__ );
+define( 'MRSHORTCUTSGB_VERSION', '1.0.0' );
+define( 'MRSHORTCUTSGB_FILE', __FILE__ );
 
 // Support for site-level autoloading.
 if ( file_exists( __DIR__ . '/lib/autoload.php' ) ) {
@@ -29,14 +29,14 @@ if ( file_exists( __DIR__ . '/lib/autoload.php' ) ) {
 }
 
 /**
- * GBExtras class.
+ * MRShortcutsGB class.
  */
-class GBExtras {
+class MRShortcutsGB {
 
 	/**
 	 * Holds the class instance.
 	 *
-	 * @var GBExtras $instance
+	 * @var MRShortcutsGB $instance
 	 */
 	private static $instance = null;
 
@@ -45,7 +45,7 @@ class GBExtras {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @return GBExtras class instance.
+	 * @return MRShortcutsGB class instance.
 	 */
 	public static function get_instance() {
 		if ( null === self::$instance ) {
@@ -68,13 +68,13 @@ class GBExtras {
 		$admin_bar->run();
 
 		/**
-		 * When GBExtras can be extended.
+		 * When MRShortcutsGB can be extended.
 		 *
-		 * Filter when GBExtras can be extended.
+		 * Filter when MRShortcutsGB can be extended.
 		 *
 		 * @since 1.0.0
 		 */
-		do_action( 'gb_extras_loaded' );
+		do_action( 'mrshortcutsgb_loaded' );
 	}
 
 	/**
@@ -89,7 +89,7 @@ class GBExtras {
 add_action(
 	'plugins_loaded',
 	function () {
-		$gb = GBExtras::get_instance();
+		$gb = MRShortcutsGB::get_instance();
 		$gb->plugins_loaded();
 	}
 );

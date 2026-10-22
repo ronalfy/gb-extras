@@ -5,8 +5,8 @@
 		"wpApiSettings": true,
 		"window": true,
 		"document": true,
-		"dlxGBExtrasAdmin": "readonly",
-		"gbExtrasPatternInserter": "readonly"
+		"mrshortcutsgbAdmin": "readonly",
+		"mrshortcutsgbPatternInserter": "readonly"
 	},
 	"env": {
 		"browser": true,

@@ -2,10 +2,10 @@
 /**
  * Set up the blocks and their attributes.
  *
- * @package GBExtras
+ * @package MRShortcutsGB
  */
 
-namespace DLXPlugins\GBExtras;
+namespace MRShortcutsGB;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -48,8 +48,8 @@ class Blocks {
 		}
 
 		$options  = Options::get_options();
-		$v1_label = $options['v1CategoryLabel'] ?? __( 'GenerateBlocks v1 (Legacy Blocks)', 'gb-extras' );
-		$v2_label = $options['v2CategoryLabel'] ?? __( 'GenerateBlocks v2 (New Blocks)', 'gb-extras' );
+		$v1_label = $options['v1CategoryLabel'] ?? __( 'GenerateBlocks v1 (Legacy Blocks)', 'mediaron-block-shortcuts-for-gb' );
+		$v2_label = $options['v2CategoryLabel'] ?? __( 'GenerateBlocks v2 (New Blocks)', 'mediaron-block-shortcuts-for-gb' );
 
 		// Now add the GenerateBlocks category.
 		$generateblocks_category = array(
@@ -161,7 +161,7 @@ class Blocks {
 		}
 		if ( ! empty( $fonts_group ) ) {
 			$fonts[] = array(
-				'label'   => __( 'Adobe Fonts', 'gb-extras' ),
+				'label'   => __( 'Adobe Fonts', 'mediaron-block-shortcuts-for-gb' ),
 				'options' => $fonts_group,
 			);
 		}
@@ -194,7 +194,7 @@ class Blocks {
 					);
 				}
 				$fonts[] = array(
-					'label'   => __( 'Adobe Fonts', 'gb-extras' ),
+					'label'   => __( 'Adobe Fonts', 'mediaron-block-shortcuts-for-gb' ),
 					'options' => $fonts_group,
 				);
 			}
@@ -211,7 +211,7 @@ class Blocks {
 				);
 			}
 			$fonts[] = array(
-				'label'   => __( 'Google Fonts', 'gb-extras' ),
+				'label'   => __( 'Google Fonts', 'mediaron-block-shortcuts-for-gb' ),
 				'options' => $fonts_group,
 			);
 		}
@@ -246,7 +246,7 @@ class Blocks {
 	 */
 	public function init_rest_api() {
 		register_rest_route(
-			'dlxplugins/gb-extras/v1',
+			'mediaron/block-shortcuts-for-gb/v1',
 			'/process_image',
 			array(
 				'methods'             => 'POST',
@@ -255,7 +255,7 @@ class Blocks {
 			)
 		);
 		register_rest_route(
-			'dlxplugins/gb-extras/v1',
+			'mediaron/block-shortcuts-for-gb/v1',
 			'/get_asset_icon_groups',
 			array(
 				'methods'             => 'GET',
@@ -264,7 +264,7 @@ class Blocks {
 			)
 		);
 		register_rest_route(
-			'dlxplugins/gb-extras/v1',
+			'mediaron/block-shortcuts-for-gb/v1',
 			'/regenerate_css_files',
 			array(
 				'methods'             => 'POST',
@@ -306,7 +306,7 @@ class Blocks {
 			if ( ! $extension ) {
 				\wp_send_json_error(
 					array(
-						'message' => __( 'File extension not found.', 'gb-extras' ),
+						'message' => __( 'File extension not found.', 'mediaron-block-shortcuts-for-gb' ),
 					),
 					400
 				);
@@ -315,7 +315,7 @@ class Blocks {
 			if ( ! in_array( $extension, $valid_extensions, true ) ) {
 				\wp_send_json_error(
 					array(
-						'message' => __( 'Invalid file extension.', 'gb-extras' ),
+						'message' => __( 'Invalid file extension.', 'mediaron-block-shortcuts-for-gb' ),
 					),
 					400
 				);
@@ -357,7 +357,7 @@ class Blocks {
 		}
 		\wp_send_json_error(
 			array(
-				'message' => __( 'Invalid image URL.', 'gb-extras' ),
+				'message' => __( 'Invalid image URL.', 'mediaron-block-shortcuts-for-gb' ),
 			),
 			400
 		);
@@ -406,7 +406,7 @@ class Blocks {
 			return new \WP_REST_Response(
 				array(
 					'success'  => true,
-					'response' => __( 'Global styles CSS regenerated successfully.', 'gb-extras' ),
+					'response' => __( 'Global styles CSS regenerated successfully.', 'mediaron-block-shortcuts-for-gb' ),
 				),
 				200
 			);
@@ -423,7 +423,7 @@ class Blocks {
 		return new \WP_REST_Response(
 			array(
 				'success'  => true,
-				'response' => __( 'CSS caches cleared. Block styles will regenerate on the next page load.', 'gb-extras' ),
+				'response' => __( 'CSS caches cleared. Block styles will regenerate on the next page load.', 'mediaron-block-shortcuts-for-gb' ),
 			),
 			200
 		);
@@ -472,15 +472,15 @@ class Blocks {
 			return;
 		}
 		wp_register_style(
-			'gb-extras-block-editor-styles',
+			'mrshortcuts-gb-block-editor-styles',
 			false,
 			array(),
 			Functions::get_plugin_version(),
 			'all'
 		);
-		wp_enqueue_style( 'gb-extras-block-editor-styles' );
+		wp_enqueue_style( 'mrshortcuts-gb-block-editor-styles' );
 		wp_add_inline_style(
-			'gb-extras-block-editor-styles',
+			'mrshortcuts-gb-block-editor-styles',
 			'[data-container-type] {
 				position: relative;
 			}
@@ -520,7 +520,7 @@ class Blocks {
 		$options = Options::get_options();
 
 		wp_register_style(
-			'gb-extras-pattern-inserter-block-css',
+			'mrshortcuts-gb-pattern-inserter-block-css',
 			Functions::get_plugin_url( 'build/index.css' ),
 			array(),
 			Functions::get_plugin_version(),
@@ -530,7 +530,7 @@ class Blocks {
 		$deps = require Functions::get_plugin_dir( 'build/index.asset.php' );
 
 		wp_enqueue_script(
-			'gb-extras-pattern-inserter-block',
+			'mrshortcuts-gb-pattern-inserter-block',
 			Functions::get_plugin_url( 'build/index.js' ),
 			$deps['dependencies'],
 			$deps['version'],
@@ -538,29 +538,29 @@ class Blocks {
 		);
 
 		wp_localize_script(
-			'gb-extras-pattern-inserter-block',
-			'gbExtrasPatternInserter',
+			'mrshortcuts-gb-pattern-inserter-block',
+			'mrshortcutsgbPatternInserter',
 			array(
-				'restUrl'                       => rest_url( 'dlxplugins/gb-extras/v1' ),
+				'restUrl'                       => rest_url( 'mediaron/block-shortcuts-for-gb/v1' ),
 				'restNonce'                     => wp_create_nonce( 'wp_rest' ),
 				'allowedGoogleFonts'            => $options['allowedGoogleFonts'] ?? array(),
 				'enableMarkdownToHeadlineBlock' => ( ( $options['enableMarkdownToHeadlineBlock'] ?? false ) ? 'true' : 'false' ),
 				'enableV1Transformations'       => ( ( $options['enableV1Transformations'] ?? false ) ? 'true' : 'false' ),
 				'enableV1Blocks'                => ( ( $options['enableV1Blocks'] ?? false ) ? 'true' : 'false' ),
-				'v1CategoryLabel'               => esc_html( $options['v1CategoryLabel'] ?? esc_html__( 'GenerateBlocks v1', 'gb-extras' ) ),
-				'v2CategoryLabel'               => esc_html( $options['v2CategoryLabel'] ?? esc_html__( 'GenerateBlocks v2', 'gb-extras' ) ),
-				'v1BlockSuffix'                 => esc_html( $options['v1BlockSuffix'] ?? esc_html__( '(v1)', 'gb-extras' ) ),
-				'v2BlockSuffix'                 => esc_html( $options['v2BlockSuffix'] ?? esc_html__( '(v2)', 'gb-extras' ) ),
+				'v1CategoryLabel'               => esc_html( $options['v1CategoryLabel'] ?? esc_html__( 'GenerateBlocks v1', 'mediaron-block-shortcuts-for-gb' ) ),
+				'v2CategoryLabel'               => esc_html( $options['v2CategoryLabel'] ?? esc_html__( 'GenerateBlocks v2', 'mediaron-block-shortcuts-for-gb' ) ),
+				'v1BlockSuffix'                 => esc_html( $options['v1BlockSuffix'] ?? esc_html__( '(v1)', 'mediaron-block-shortcuts-for-gb' ) ),
+				'v2BlockSuffix'                 => esc_html( $options['v2BlockSuffix'] ?? esc_html__( '(v2)', 'mediaron-block-shortcuts-for-gb' ) ),
 			)
 		);
 
 		// Enqueue the block labels script.
 		$block_labels_enabled = true; // @TODO: Make this dynamic.
 		if ( $block_labels_enabled ) {
-			$deps = require Functions::get_plugin_dir( 'build/gb-extras-block-labels.asset.php' );
+			$deps = require Functions::get_plugin_dir( 'build/mrshortcuts-gb-block-labels.asset.php' );
 			wp_enqueue_script(
-				'gb-extras-block-labels',
-				Functions::get_plugin_url( 'build/gb-extras-block-labels.js' ),
+				'mrshortcuts-gb-block-labels',
+				Functions::get_plugin_url( 'build/mrshortcuts-gb-block-labels.js' ),
 				$deps['dependencies'],
 				$deps['version'],
 				true
@@ -576,10 +576,10 @@ class Blocks {
 			return;
 		}
 
-		$deps = require Functions::get_plugin_dir( 'build/gb-extras-commands-block-editor.asset.php' );
+		$deps = require Functions::get_plugin_dir( 'build/mrshortcuts-gb-commands-block-editor.asset.php' );
 		wp_enqueue_script(
-			'gb-extras-commands-block-editor',
-			Functions::get_plugin_url( 'build/gb-extras-commands-block-editor.js' ),
+			'mrshortcuts-gb-commands-block-editor',
+			Functions::get_plugin_url( 'build/mrshortcuts-gb-commands-block-editor.js' ),
 			$deps['dependencies'],
 			$deps['version'],
 			true
@@ -598,10 +598,10 @@ class Blocks {
 			return;
 		}
 
-		$deps = require Functions::get_plugin_dir( 'build/gb-extras-commands-admin.asset.php' );
+		$deps = require Functions::get_plugin_dir( 'build/mrshortcuts-gb-commands-admin.asset.php' );
 		wp_enqueue_script(
-			'gb-extras-commands-admin',
-			Functions::get_plugin_url( 'build/gb-extras-commands-admin.js' ),
+			'mrshortcuts-gb-commands-admin',
+			Functions::get_plugin_url( 'build/mrshortcuts-gb-commands-admin.js' ),
 			$deps['dependencies'],
 			$deps['version'],
 			true
@@ -615,7 +615,7 @@ class Blocks {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
 		}
-		echo '<div id="gb-extras-commands-admin" style="display: none; visibility: hidden; position: absolute; top: 0; left: 0; width: 0; height: 0; overflow: hidden;"></div>';
+		echo '<div id="mrshortcuts-gb-commands-admin" style="display: none; visibility: hidden; position: absolute; top: 0; left: 0; width: 0; height: 0; overflow: hidden;"></div>';
 	}
 
 	/**
@@ -625,7 +625,7 @@ class Blocks {
 		if ( ! is_user_logged_in() || ! current_user_can( 'manage_options' ) ) {
 			return;
 		}
-		echo '<div id="gb-extras-commands-frontend" style="display: none; visibility: hidden; position: absolute; top: 0; left: 0; width: 0; height: 0; overflow: hidden;"></div>';
+		echo '<div id="mrshortcuts-gb-commands-frontend" style="display: none; visibility: hidden; position: absolute; top: 0; left: 0; width: 0; height: 0; overflow: hidden;"></div>';
 	}
 
 	/**
@@ -657,10 +657,10 @@ class Blocks {
 		}
 
 		// Enqueue our frontend commands script.
-		$deps = require Functions::get_plugin_dir( 'build/gb-extras-commands-frontend.asset.php' );
+		$deps = require Functions::get_plugin_dir( 'build/mrshortcuts-gb-commands-frontend.asset.php' );
 		wp_enqueue_script(
-			'gb-extras-commands-frontend',
-			Functions::get_plugin_url( 'build/gb-extras-commands-frontend.js' ),
+			'mrshortcuts-gb-commands-frontend',
+			Functions::get_plugin_url( 'build/mrshortcuts-gb-commands-frontend.js' ),
 			$deps['dependencies'],
 			$deps['version'],
 			true

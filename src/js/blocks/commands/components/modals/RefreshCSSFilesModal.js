@@ -37,12 +37,12 @@ const RefreshCSSFilesModal = ( { isOpen, onClose, isLoading, message, error, war
 			onRequestClose={ () => {
 				onClose();
 			} }
-			title={ __( 'Generate CSS Files', 'dlx-gb-extras' ) }
+			title={ __( 'Generate CSS Files', 'mediaron-block-shortcuts-for-gb' ) }
 		>
 			{ isLoading && (
 				<div style={ { display: 'flex', alignItems: 'center', gap: '10px' } }>
 					<Spinner />
-					<p>{ __( 'Refreshing CSS files…', 'dlx-gb-extras' ) }</p>
+					<p>{ __( 'Refreshing CSS files…', 'mediaron-block-shortcuts-for-gb' ) }</p>
 				</div>
 			) }
 			{ ! isLoading && message && (

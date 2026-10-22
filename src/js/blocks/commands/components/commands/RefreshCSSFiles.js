@@ -22,7 +22,7 @@ export function useRefreshCSSFilesCommand() {
 	const [ warning, setWarning ] = useState( false );
 
 	useCommand( {
-		name: 'dlx-gb-extras-refresh-css-files',
+		name: 'mrshortcuts-gb-refresh-css-files',
 		label: 'GenerateBlocks: Generate CSS Files',
 		keywords: [ 'generate', 'css', 'files', 'generateblocks', 'regenerate' ],
 		icon: <GBIcon width="16" height="16" />,
@@ -34,19 +34,19 @@ export function useRefreshCSSFilesCommand() {
 			setMessage( '' );
 
 			apiFetch( {
-				path: '/dlxplugins/gb-extras/v1/regenerate_css_files',
+				path: '/mediaron/block-shortcuts-for-gb/v1/regenerate_css_files',
 				method: 'POST',
 			} )
 				.then( ( result ) => {
 					setIsLoading( false );
 					if ( result.success ) {
-						setMessage( result.response || __( 'CSS files regenerated successfully.', 'dlx-gb-extras' ) );
+						setMessage( result.response || __( 'CSS files regenerated successfully.', 'mediaron-block-shortcuts-for-gb' ) );
 						setTimeout( () => {
 							setIsOpen( false );
 						}, 2000 );
 					} else {
 						setError( true );
-						setMessage( result.response || __( 'Failed to regenerate CSS files.', 'dlx-gb-extras' ) );
+						setMessage( result.response || __( 'Failed to regenerate CSS files.', 'mediaron-block-shortcuts-for-gb' ) );
 					}
 				} )
 				.catch( ( err ) => {
@@ -54,10 +54,10 @@ export function useRefreshCSSFilesCommand() {
 					// Check if it's a permission error.
 					if ( err.code === 'rest_forbidden' || err.status === 401 || err.status === 403 ) {
 						setError( true );
-						setMessage( __( 'You do not have permission to refresh CSS files.', 'dlx-gb-extras' ) );
+						setMessage( __( 'You do not have permission to refresh CSS files.', 'mediaron-block-shortcuts-for-gb' ) );
 					} else {
 						setError( true );
-						setMessage( err.message || __( 'An error occurred while regenerating CSS files.', 'dlx-gb-extras' ) );
+						setMessage( err.message || __( 'An error occurred while regenerating CSS files.', 'mediaron-block-shortcuts-for-gb' ) );
 					}
 				} );
 		},

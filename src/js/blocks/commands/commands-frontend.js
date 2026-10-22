@@ -15,10 +15,10 @@ const CommandsFrontend = () => {
 	return refreshCSSFilesModal;
 };
 
-registerPlugin( 'dlxgb-commands-frontend', {
+registerPlugin( 'mrshortcuts-gb-commands-frontend', {
 	render: CommandsFrontend,
 } );
-const rootElement = document.getElementById( 'gb-extras-commands-frontend' );
+const rootElement = document.getElementById( 'mrshortcuts-gb-commands-frontend' );
 if ( rootElement ) {
 	const root = createRoot( rootElement );
 	root.render( <CommandsFrontend /> );

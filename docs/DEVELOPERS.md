@@ -3,8 +3,8 @@
 ## Directory map
 
 ```
-gb-extras/
-├── gb-extras.php       # Bootstrap
+mediaron-block-shortcuts-for-gb/
+├── mediaron-block-shortcuts-for-gb.php       # Bootstrap
 ├── php/                # Admin, Admin_Bar, Blocks, Functions, Options
 ├── src/
 │   ├── index.js        # Editor plugins / transforms
@@ -31,24 +31,24 @@ grunt            # optional zip
 
 1. **Default `@wordpress/scripts` config** → `build/`
    - `index` ← `src/index.js`
-   - `gb-extras-block-labels`
-   - `gb-extras-commands-block-editor`
-   - `gb-extras-commands-admin`
-   - `gb-extras-commands-frontend`
+   - `mrshortcuts-gb-block-labels`
+   - `mrshortcuts-gb-commands-block-editor`
+   - `mrshortcuts-gb-commands-admin`
+   - `mrshortcuts-gb-commands-frontend`
 2. **Custom admin config** → `dist/`
-   - `gb-extras-admin` ← `src/js/react/views/main/index.js`
-   - `gb-extras-admin-css` ← `src/scss/admin.scss`
+   - `mrshortcuts-gb-admin` ← `src/js/react/views/main/index.js`
+   - `mrshortcuts-gb-admin-css` ← `src/scss/admin.scss`
 
 Enqueue mapping:
 
-- `php/Admin.php` → `dist/gb-extras-admin.js` + `dist/gb-extras-admin-css.css`
+- `php/Admin.php` → `dist/mrshortcuts-gb-admin.js` + `dist/mrshortcuts-gb-admin-css.css`
 - `php/Blocks.php` → `build/index.js`, labels, and command bundles
 
-PHP classes autoload via Composer PSR-4: `DLXPlugins\GBExtras\` → `php/` (`composer.json`, generated files under `lib/`).
+PHP classes autoload via Composer PSR-4: `MRShortcutsGB\` → `php/` (`composer.json`, generated files under `lib/`).
 
 ## Options schema
 
-Stored under option key **`dlx_gb_extras_options`** (site option on multisite). Defaults from `Options::get_defaults()`:
+Stored under option key **`mrshortcutsgb_options`** (site option on multisite). Defaults from `Options::get_defaults()`:
 
 | Key | Type | Default |
 | --- | --- | --- |
@@ -73,7 +73,7 @@ Stored under option key **`dlx_gb_extras_options`** (site option on multisite). 
 
 | Hook | Type | When |
 | --- | --- | --- |
-| `gb_extras_loaded` | action | After Admin / Admin_Bar / Blocks boot |
+| `mrshortcutsgb_loaded` | action | After Admin / Admin_Bar / Blocks boot |
 
 There is no broader intentional public PHP/JS API. Treat other identifiers as internal.
 
@@ -87,13 +87,13 @@ All require `manage_options` and matching nonces.
 
 | Action | Purpose |
 | --- | --- |
-| `dlx_gb_extras_get_options` | Load options for the settings React app |
-| `dlx_gb_extras_save_options` | Persist settings form |
-| `dlx_gb_extras_reset_options` | Reset to defaults |
+| `mrshortcutsgb_get_options` | Load options for the settings React app |
+| `mrshortcutsgb_save_options` | Persist settings form |
+| `mrshortcutsgb_reset_options` | Reset to defaults |
 
 ## REST
 
-Namespace: `dlxplugins/gb-extras/v1`
+Namespace: `mediaron/block-shortcuts-for-gb/v1`
 
 | Route | Method | Purpose |
 | --- | --- | --- |
@@ -107,14 +107,14 @@ Permission callbacks require appropriate upload / edit capabilities (see `Blocks
 
 | Global | Script | Contents |
 | --- | --- | --- |
-| `dlxGBExtrasAdmin` | Admin settings | Nonces, `ajaxurl`, post type list, `isProActive` |
-| `gbExtrasPatternInserter` | Editor / pattern tools | Options flags, REST URL/nonce, v1/v2 suffix strings |
+| `mrshortcutsgbAdmin` | Admin settings | Nonces, `ajaxurl`, post type list, `isProActive` |
+| `mrshortcutsgbPatternInserter` | Editor / pattern tools | Options flags, REST URL/nonce, v1/v2 suffix strings |
 
 ## Coding standards
 
 - PHP: [phpcs.xml.dist](../phpcs.xml.dist) (WordPress). Prefer phpcbf after edits.
 - JS: [.eslintrc.json](../.eslintrc.json) (`@wordpress/eslint-plugin`).
-- Text domain: `gb-extras`.
+- Text domain: `mediaron-block-shortcuts-for-gb`.
 
 ## Related docs
 

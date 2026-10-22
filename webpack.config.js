@@ -13,13 +13,13 @@ module.exports = ( env ) => {
 			},
 			entry: {
 				index: './src/index.js',
-				'gb-extras-block-labels':
+				'mrshortcuts-gb-block-labels':
 					'./src/js/blocks/components/GBBlockLabels/index.js',
-				'gb-extras-commands-block-editor':
+				'mrshortcuts-gb-commands-block-editor':
 					'./src/js/blocks/commands/commands-block-editor.js',
-				'gb-extras-commands-admin':
+				'mrshortcuts-gb-commands-admin':
 					'./src/js/blocks/commands/commands-admin.js',
-				'gb-extras-commands-frontend':
+				'mrshortcuts-gb-commands-frontend':
 					'./src/js/blocks/commands/commands-frontend.js',
 			},
 			mode: env.mode,
@@ -27,8 +27,8 @@ module.exports = ( env ) => {
 		},
 		{
 			entry: {
-				'gb-extras-admin': './src/js/react/views/main/index.js',
-				'gb-extras-admin-css': './src/scss/admin.scss',
+				'mrshortcuts-gb-admin': './src/js/react/views/main/index.js',
+				'mrshortcuts-gb-admin-css': './src/scss/admin.scss',
 			},
 			resolve: {
 				alias: {

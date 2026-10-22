@@ -29,7 +29,7 @@ export function useTransformHeadingToGBTextCommand() {
 	}, [ headingTransformConfirmation ] );
 
 	useCommand( {
-		name: 'dlx-transform-headings-to-gb-text',
+		name: 'mrshortcuts-gb-transform-headings-to-gb-text',
 		label: 'GenerateBlocks: Convert Headings to Text Blocks',
 		searchLabel: 'Convert/transform all core heading blocks to GenerateBlocks v2 text blocks',
 		keywords: [ 'generateblocks', 'transform', 'convert', 'heading', 'headline', 'text', 'block', 'core', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'bulk' ],
@@ -62,4 +62,3 @@ export function useTransformHeadingToGBTextCommand() {
 		/>
 	);
 }
-

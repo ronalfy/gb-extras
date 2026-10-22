@@ -2,10 +2,10 @@
 /**
  * Admin Bar class.
  *
- * @package GBExtras
+ * @package MRShortcutsGB
  */
 
-namespace DLXPlugins\GBExtras;
+namespace MRShortcutsGB;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	die( 'No direct access.' );
@@ -30,7 +30,7 @@ class Admin_Bar {
 	}
 
 	/**
-	 * Whether the current user may receive GB Extras admin bar changes (hide menu or full menu replacement).
+	 * Whether the current user may receive admin bar changes (hide menu or full menu replacement).
 	 *
 	 * @return bool True when the user is an administrator or editor.
 	 */
@@ -53,14 +53,14 @@ class Admin_Bar {
 		}
 
 		wp_register_style(
-			'gb-extras-admin-bar',
+			'mrshortcuts-gb-admin-bar',
 			null,
 			array(),
 			'1.0.0',
 			'all'
 		);
 		wp_add_inline_style(
-			'gb-extras-admin-bar',
+			'mrshortcuts-gb-admin-bar',
 			'#wp-admin-bar-generateblocks-menu > .ab-item:before {
 				content: "\f111";
 				background-color: transparent;
@@ -73,7 +73,7 @@ class Admin_Bar {
 				color: #f0f0f1;
 			}'
 		);
-		wp_enqueue_style( 'gb-extras-admin-bar' );
+		wp_enqueue_style( 'mrshortcuts-gb-admin-bar' );
 
 		$options                = Options::get_options();
 		$admin_menu_bar         = $options['adminMenuBar'] ?? array();
@@ -145,7 +145,7 @@ class Admin_Bar {
 		$admin_bar->add_menu(
 			array(
 				'id'    => 'generateblocks-menu',
-				'title' => esc_html__( 'GenerateBlocks', 'gb-extras' ),
+				'title' => esc_html__( 'GenerateBlocks', 'mediaron-block-shortcuts-for-gb' ),
 				'href'  => admin_url( 'admin.php?page=generateblocks-settings' ),
 			)
 		);
@@ -154,7 +154,7 @@ class Admin_Bar {
 			array(
 				'parent' => 'generateblocks-menu',
 				'id'     => 'generateblocks-settings-group',
-				'title'  => esc_html__( 'Settings', 'gb-extras' ),
+				'title'  => esc_html__( 'Settings', 'mediaron-block-shortcuts-for-gb' ),
 				'href'   => admin_url( 'admin.php?page=generateblocks-settings' ),
 			)
 		);
@@ -164,7 +164,7 @@ class Admin_Bar {
 			array(
 				'parent' => 'generateblocks-settings-group',
 				'id'     => 'generateblocks-settings-item',
-				'title'  => __( 'Settings', 'gb-extras' ),
+				'title'  => __( 'Settings', 'mediaron-block-shortcuts-for-gb' ),
 				'href'   => admin_url( 'admin.php?page=generateblocks-settings' ),
 			)
 		);
@@ -177,7 +177,7 @@ class Admin_Bar {
 					array(
 						'parent' => 'generateblocks-settings-group',
 						'id'     => 'generateblocks-editor-access',
-						'title'  => __( 'Editor Access', 'gb-extras' ),
+						'title'  => __( 'Editor Access', 'mediaron-block-shortcuts-for-gb' ),
 						'href'   => admin_url( 'admin.php?page=generateblocks-editor-access' ),
 					)
 				);
@@ -186,7 +186,7 @@ class Admin_Bar {
 				array(
 					'parent' => 'generateblocks-menu',
 					'id'     => 'generateblocks-design-group',
-					'title'  => __( 'Design', 'gb-extras' ),
+					'title'  => __( 'Design', 'mediaron-block-shortcuts-for-gb' ),
 				)
 			);
 			// Get GenerateBlocks design settings.
@@ -194,7 +194,7 @@ class Admin_Bar {
 				array(
 					'parent' => 'generateblocks-design-group',
 					'id'     => 'generateblocks-global-styles-item',
-					'title'  => __( 'Global Styles', 'gb-extras' ),
+					'title'  => __( 'Global Styles', 'mediaron-block-shortcuts-for-gb' ),
 					'href'   => admin_url( 'admin.php?page=generateblocks-styles' ),
 				)
 			);
@@ -202,7 +202,7 @@ class Admin_Bar {
 				array(
 					'parent' => 'generateblocks-design-group',
 					'id'     => 'generateblocks-design-tokens-item',
-					'title'  => __( 'Design Tokens', 'gb-extras' ),
+					'title'  => __( 'Design Tokens', 'mediaron-block-shortcuts-for-gb' ),
 					'href'   => admin_url( 'admin.php?page=generateblocks-styles&view=design-tokens' ),
 				)
 			);
@@ -211,7 +211,7 @@ class Admin_Bar {
 				array(
 					'parent' => 'generateblocks-menu',
 					'id'     => 'generateblocks-build-group',
-					'title'  => __( 'Build', 'gb-extras' ),
+					'title'  => __( 'Build', 'mediaron-block-shortcuts-for-gb' ),
 				)
 			);
 
@@ -227,7 +227,7 @@ class Admin_Bar {
 				array(
 					'parent' => 'generateblocks-build-group',
 					'id'     => 'generateblocks-local-patterns-item',
-					'title'  => __( 'Local Patterns', 'gb-extras' ),
+					'title'  => __( 'Local Patterns', 'mediaron-block-shortcuts-for-gb' ),
 					'href'   => admin_url( 'edit.php?post_type=wp_block' ),
 				)
 			);
@@ -237,7 +237,7 @@ class Admin_Bar {
 				array(
 					'parent' => 'generateblocks-build-group',
 					'id'     => 'generateblocks-asset-library-item',
-					'title'  => __( 'Asset Library', 'gb-extras' ),
+					'title'  => __( 'Asset Library', 'mediaron-block-shortcuts-for-gb' ),
 					'href'   => admin_url( 'admin.php?page=generateblocks-asset-library' ),
 				)
 			);
@@ -248,7 +248,7 @@ class Admin_Bar {
 					array(
 						'parent' => 'generateblocks-build-group',
 						'id'     => 'generateblocks-forms',
-						'title'  => __( 'Forms', 'gb-extras' ),
+						'title'  => __( 'Forms', 'mediaron-block-shortcuts-for-gb' ),
 						'href'   => admin_url( 'admin.php?page=generateblocks-forms' ),
 					)
 				);
@@ -260,7 +260,7 @@ class Admin_Bar {
 					array(
 						'parent' => 'generateblocks-build-group',
 						'id'     => 'generateblocks-overlay-panels',
-						'title'  => __( 'Overlay Panels', 'gb-extras' ),
+						'title'  => __( 'Overlay Panels', 'mediaron-block-shortcuts-for-gb' ),
 						'href'   => admin_url( 'admin.php?page=generateblocks-overlay-panels' ),
 					)
 				);
@@ -272,20 +272,20 @@ class Admin_Bar {
 					array(
 						'parent' => 'generateblocks-build-group',
 						'id'     => 'generateblocks-conditions',
-						'title'  => __( 'Conditions', 'gb-extras' ),
+						'title'  => __( 'Conditions', 'mediaron-block-shortcuts-for-gb' ),
 						'href'   => admin_url( 'admin.php?page=generateblocks-conditions' ),
 					)
 				);
 			}
 		}
 
-		// Add GB Extras last.
+		// Add Shortcuts last.
 		$admin_bar->add_node(
 			array(
 				'parent' => 'generateblocks-settings-group',
-				'id'     => 'generateblocks-extras-item',
-				'title'  => __( 'Extras', 'gb-extras' ),
-				'href'   => admin_url( 'admin.php?page=dlx-gb-extras' ),
+				'id'     => 'mr-shortcuts-item',
+				'title'  => __( 'Shortcuts', 'mediaron-block-shortcuts-for-gb' ),
+				'href'   => admin_url( 'admin.php?page=mrshortcuts-gb' ),
 			)
 		);
 	}

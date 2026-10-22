@@ -1,51 +1,62 @@
 /**
- * Modal for confirming v1 to v2 block transformation.
+ * Modal for transforming v1 blocks to v2.
  */
 
-import { Modal, Button, Spinner } from '@wordpress/components';
+import { Modal, Button, CheckboxControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import { useState } from 'react';
 
 /**
  * TransformV1ToV2Modal component.
  *
- * @param {Object}   props              - Component props.
- * @param {boolean}  props.isOpen       - Boolean to control modal visibility.
- * @param {Function} props.onClose      - Callback when modal is closed.
- * @param {Function} props.onConfirm    - Callback when transformation is confirmed.
- * @param {boolean}  props.transforming - Boolean indicating transformation in progress.
+ * @param {Object}   props            - Component props.
+ * @param {boolean}  props.isOpen     - Boolean to control modal visibility.
+ * @param {Function} props.onClose    - Callback when modal is closed.
+ * @param {Function} props.onConfirm  - Callback when transformation is confirmed.
+ * @param {boolean}  props.transforming - Boolean indicating transforming state.
  * @return {JSX.Element|null} The TransformV1ToV2Modal component.
  */
 const TransformV1ToV2Modal = ( { isOpen, onClose, onConfirm, transforming } ) => {
+	const [ confirmed, setConfirmed ] = useState( false );
+
 	if ( ! isOpen ) {
 		return null;
 	}
 
 	return (
 		<Modal
-			isDismissible={ true }
+			isDismissible={ ! transforming }
 			shouldCloseOnClickOutside={ false }
-			shouldCloseOnEsc={ true }
 			onRequestClose={ onClose }
-			title="Transform v1 Blocks to v2"
+			title={ __( 'Convert v1 Blocks to v2', 'mediaron-block-shortcuts-for-gb' ) }
 		>
-			<p>{ __( 'Please back up your blocks before transforming. There is no undo for this operation.', 'dlx-gb-extras' ) }</p>
-			<p>{ __( 'This will convert all v1 blocks to v2 blocks.', 'dlx-gb-extras' ) }</p>
-			<div style={ { display: 'flex', gap: '10px' } }>
+			<div style={ { marginBottom: '20px' } }>
+				<p>{ __( 'Please back up your blocks before transforming. There is no undo for this operation.', 'mediaron-block-shortcuts-for-gb' ) }</p>
+				<p>{ __( 'This will convert all v1 blocks to v2 blocks.', 'mediaron-block-shortcuts-for-gb' ) }</p>
+			</div>
+			<div style={ { marginBottom: '20px' } }>
+				<CheckboxControl
+					label={ __( 'I understand and want to proceed.', 'mediaron-block-shortcuts-for-gb' ) }
+					checked={ confirmed }
+					onChange={ setConfirmed }
+					help={ __( 'Please back up your blocks before transforming. There is no undo for this operation.', 'mediaron-block-shortcuts-for-gb' ) }
+				/>
+			</div>
+			<div style={ { display: 'flex', justifyContent: 'flex-end', gap: '10px' } }>
 				<Button
 					variant="primary"
-					isDestructive={ true }
 					onClick={ onConfirm }
-					help={ __( 'Please back up your blocks before transforming. There is no undo for this operation.', 'dlx-gb-extras' ) }
-					disabled={ transforming }
-					icon={ transforming ? <Spinner /> : null }
+					disabled={ ! confirmed || transforming }
+					isBusy={ transforming }
 				>
-					{ transforming ? __( 'Transforming…', 'dlx-gb-extras' ) : __( 'Transform', 'dlx-gb-extras' ) }
+					{ transforming ? __( 'Transforming…', 'mediaron-block-shortcuts-for-gb' ) : __( 'Transform', 'mediaron-block-shortcuts-for-gb' ) }
 				</Button>
 				<Button
 					variant="secondary"
 					onClick={ onClose }
+					disabled={ transforming }
 				>
-					{ __( 'Cancel', 'dlx-gb-extras' ) }
+					{ __( 'Cancel', 'mediaron-block-shortcuts-for-gb' ) }
 				</Button>
 			</div>
 		</Modal>
@@ -53,4 +64,3 @@ const TransformV1ToV2Modal = ( { isOpen, onClose, onConfirm, transforming } ) =>
 };
 
 export default TransformV1ToV2Modal;
-

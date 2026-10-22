@@ -2,10 +2,10 @@
 /**
  * Helper functions for the plugin.
  *
- * @package GBExtras
+ * @package MRShortcutsGB
  */
 
-namespace DLXPlugins\GBExtras;
+namespace MRShortcutsGB;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -79,10 +79,10 @@ class Functions {
 				case 'url':
 					return esc_url( $attributes[ $attribute ] );
 				case 'default':
-					return new \WP_Error( 'alerts_dlx_unknown_type', __( 'Unknown type.', 'gb-extras' ) );
+					return new \WP_Error( 'alerts_dlx_unknown_type', __( 'Unknown type.', 'mediaron-block-shortcuts-for-gb' ) );
 			}
 		}
-		return new \WP_Error( 'alerts_dlx_attribute_not_found', __( 'Attribute not found.', 'gb-extras' ) );
+		return new \WP_Error( 'alerts_dlx_attribute_not_found', __( 'Attribute not found.', 'mediaron-block-shortcuts-for-gb' ) );
 	}
 
 	/**
@@ -105,7 +105,7 @@ class Functions {
 		 *
 		 * @param array $file_extensions The valid mime types.
 		 */
-		$file_extensions = apply_filters( 'gb_extras_supported_file_extensions', $file_extensions );
+		$file_extensions = apply_filters( 'mrshortcutsgb_supported_file_extensions', $file_extensions );
 
 		return $file_extensions;
 	}
@@ -132,7 +132,7 @@ class Functions {
 	 * @return string URL to admin screen. Output is not escaped.
 	 */
 	public static function get_settings_url( $tab = '', $sub_tab = '' ) {
-		$options_url = admin_url( 'admin.php?page=dlx-gb-extras' );
+		$options_url = admin_url( 'admin.php?page=mrshortcuts-gb' );
 		if ( ! empty( $tab ) ) {
 			$options_url = add_query_arg( array( 'tab' => sanitize_title( $tab ) ), $options_url );
 			if ( ! empty( $sub_tab ) ) {
@@ -178,7 +178,7 @@ class Functions {
 	 * @return string plugin slug.
 	 */
 	public static function get_plugin_slug() {
-		return dirname( plugin_basename( GB_EXTRAS_FILE ) );
+		return dirname( plugin_basename( MRSHORTCUTSGB_FILE ) );
 	}
 
 	/**
@@ -187,7 +187,7 @@ class Functions {
 	 * @return string base file for the plugin.
 	 */
 	public static function get_plugin_file() {
-		return plugin_basename( GB_EXTRAS_FILE );
+		return plugin_basename( MRSHORTCUTSGB_FILE );
 	}
 
 	/**
@@ -196,7 +196,7 @@ class Functions {
 	 * @return float version for the plugin.
 	 */
 	public static function get_plugin_version() {
-		return GB_EXTRAS_VERSION;
+		return MRSHORTCUTSGB_VERSION;
 	}
 
 	/**
@@ -294,7 +294,7 @@ class Functions {
 	 * @return string The new path.
 	 */
 	public static function get_plugin_dir( $path = '' ) {
-		$dir = rtrim( plugin_dir_path( GB_EXTRAS_FILE ), '/' );
+		$dir = rtrim( plugin_dir_path( MRSHORTCUTSGB_FILE ), '/' );
 		if ( ! empty( $path ) && is_string( $path ) ) {
 			$dir .= '/' . ltrim( $path, '/' );
 		}
@@ -309,7 +309,7 @@ class Functions {
 	 * @return string URL to to the file.
 	 */
 	public static function get_plugin_url( $path = '' ) {
-		$dir = rtrim( plugin_dir_url( GB_EXTRAS_FILE ), '/' );
+		$dir = rtrim( plugin_dir_url( MRSHORTCUTSGB_FILE ), '/' );
 		if ( ! empty( $path ) && is_string( $path ) ) {
 			$dir .= '/' . ltrim( $path, '/' );
 		}

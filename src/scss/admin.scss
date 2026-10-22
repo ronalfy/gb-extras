@@ -2,7 +2,7 @@
 @import './button-resets.scss';
 @import './breakpoints-mixin.scss';
 
-@keyframes dlx-gbhacks-rotate {
+@keyframes mrshortcuts-gb-rotate {
 	100% {
 		transform: rotate(360deg);
 	}
@@ -45,18 +45,18 @@
 }
 
 /* Admin container and header */
-.dlx-gb-extras-admin-wrap {
+.mrshortcuts-gb-admin-wrap {
 	position: relative;
 	padding: 0;
 	margin: 0;
 
-	.dlx-gb-extras-admin-body-wrapper {
+	.mrshortcuts-gb-admin-body-wrapper {
 		max-width: 69.5rem;
 		margin: 0 auto;
 		padding: 2.4em 20px;
 	}
 
-	.dlx-gb-extras-body__content {
+	.mrshortcuts-gb-body__content {
 		padding: 10px 35px;
 		background: #f0f0f1;
 		border: 1px solid #c3c4c7;
@@ -67,7 +67,7 @@
 	}
 }
 
-.dlx-gb-extras-admin-buttons {
+.mrshortcuts-gb-admin-buttons {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -250,7 +250,7 @@ html {
 	}
 }
 
-.dlx-gb-extras-admin-buttons button {
+.mrshortcuts-gb-admin-buttons button {
 	margin-right: 20px;
 
 	&:last-child {
@@ -277,7 +277,7 @@ html {
 	&.is-saving,
 	&.is-resetting {
 		svg {
-			animation: dlx-gbhacks-rotate;
+			animation: mrshortcuts-gb-rotate;
 			animation-duration: 1.2s;
 			animation-iteration-count: infinite;
 			animation-timing-function: linear;
@@ -293,7 +293,7 @@ html {
 /**
  * Snackbar styles.
  */
-.dlx-gb-extras-snackbar.components-snackbar {
+.mrshortcuts-gb-snackbar.components-snackbar {
 	position: fixed;
 	top: 32px;
 	right: 0;
@@ -315,59 +315,59 @@ html {
 		line-height: 0;
 	}
 
-	&.dlx-gb-extras-snackbar-loading {
+	&.mrshortcuts-gb-snackbar-loading {
 		svg {
-			animation: dlx-gbhacks-rotate;
+			animation: mrshortcuts-gb-rotate;
 			animation-duration: 1.2s;
 			animation-iteration-count: infinite;
 			animation-timing-function: linear;
 		}
 	}
 
-	&.dlx-gb-extras-snackbar-success {
+	&.mrshortcuts-gb-snackbar-success {
 		background: #14720D;
 		color: #FFF;
 	}
 
-	&.dlx-gb-extras-snackbar-error,
-	&.dlx-gb-extras-snackbar-critical {
+	&.mrshortcuts-gb-snackbar-error,
+	&.mrshortcuts-gb-snackbar-critical {
 		background: #820000;
 		color: #FFF;
 	}
 
-	&.dlx-gb-extras-snackbar-warning {
+	&.mrshortcuts-gb-snackbar-warning {
 		background: #FFC107;
 		color: #000;
 	}
 }
 
 :root {
-	--dlxgbhacks-admin--color-notice--info: #e3f3f7;
-	--dlxgbhacks-admin--color-notice--info-alt: #3a8dc4;
-	--dlxgbhacks-admin--color-notice--success: #eaf5ea;
-	--dlxgbhacks-admin--color-notice--success-alt: #49a939;
-	--dlxgbhacks-admin--color-notice--warning: #fef6e1;
-	--dlxgbhacks-admin--color-notice--warning-alt: #e8a931;
-	--dlxgbhacks-admin--color-notice--error: #f5e5e4;
-	--dlxgbhacks-admin--color-notice--error-alt: #bc2b2c;
+	--mrshortcutsgb-admin--color-notice--info: #e3f3f7;
+	--mrshortcutsgb-admin--color-notice--info-alt: #3a8dc4;
+	--mrshortcutsgb-admin--color-notice--success: #eaf5ea;
+	--mrshortcutsgb-admin--color-notice--success-alt: #49a939;
+	--mrshortcutsgb-admin--color-notice--warning: #fef6e1;
+	--mrshortcutsgb-admin--color-notice--warning-alt: #e8a931;
+	--mrshortcutsgb-admin--color-notice--error: #f5e5e4;
+	--mrshortcutsgb-admin--color-notice--error-alt: #bc2b2c;
 }
 
 
 /* Error Notices */
-.dlxgbhacks-admin__notice {
+.mrshortcutsgb-admin__notice {
 	margin: 10px 0;
 
-	&.dlxgbhacks-admin__notice--has-icon {
+	&.mrshortcutsgb-admin__notice--has-icon {
 		.components-notice__content {
 			display: grid;
 			grid-template-columns: 32px 1fr 1px;
 			align-items: center;
 		}
 
-		&.dlxgbhacks-admin__notice-appearance--inline .components-notice__content {
+		&.mrshortcutsgb-admin__notice-appearance--inline .components-notice__content {
 			display: flex;
 
-			.dlxgbhacks-admin__notice-icon {
+			.mrshortcutsgb-admin__notice-icon {
 				margin-right: 8px;
 			}
 		}
@@ -380,13 +380,13 @@ html {
 		color: #FFF;
 	}
 
-	.dlxgbhacks-admin__notice-message {
+	.mrshortcutsgb-admin__notice-message {
 		font-size: 1.2em;
 		line-height: 1.4;
 		font-weight: 500;
 	}
 
-	&.dlxgbhacks-admin__notice-appearance--block .components-notice {
+	&.mrshortcutsgb-admin__notice-appearance--block .components-notice {
 		border-left: 4px solid transparent;
 		padding: 15px 20px;
 		padding-left: 15px;
@@ -395,7 +395,7 @@ html {
 		margin-right: 0;
 	}
 
-	&.dlxgbhacks-admin__notice-appearance--inline .components-notice {
+	&.mrshortcutsgb-admin__notice-appearance--inline .components-notice {
 		padding-left: 0;
 		margin-left: 0;
 		margin-right: 0;
@@ -408,24 +408,24 @@ html {
 		height: 24px;
 	}
 
-	&.dlxgbhacks-admin__notice-type--error:not(.dlxgbhacks-admin__notice-appearance--inline) {
-		background-color: var(--dlxgbhacks-admin--color-notice--error);
+	&.mrshortcutsgb-admin__notice-type--error:not(.mrshortcutsgb-admin__notice-appearance--inline) {
+		background-color: var(--mrshortcutsgb-admin--color-notice--error);
 
 		.components-notice {
-			border-left-color: var(--dlxgbhacks-admin--color-notice--error-alt);
+			border-left-color: var(--mrshortcutsgb-admin--color-notice--error-alt);
 		}
 
 		svg {
-			color: var(--dlxgbhacks-admin--color-notice--error-alt);
+			color: var(--mrshortcutsgb-admin--color-notice--error-alt);
 		}
 
 		svg path {
-			fill: var(--dlxgbhacks-admin--color-notice--error-alt);
+			fill: var(--mrshortcutsgb-admin--color-notice--error-alt);
 		}
 	}
 
-	&.dlxgbhacks-admin__notice-type--error.dlxgbhacks-admin__notice-appearance--inline {
-		.dlxgbhacks-admin__notice-message {
+	&.mrshortcutsgb-admin__notice-type--error.mrshortcutsgb-admin__notice-appearance--inline {
+		.mrshortcutsgb-admin__notice-message {
 			color: #FFF;
 			fill: #FFF;
 		}
@@ -442,49 +442,49 @@ html {
 		}
 	}
 
-	&.dlxgbhacks-admin__notice-type--success {
-		background-color: var(--dlxgbhacks-admin--color-notice--success);
+	&.mrshortcutsgb-admin__notice-type--success {
+		background-color: var(--mrshortcutsgb-admin--color-notice--success);
 
 		.components-notice {
-			border-left-color: var(--dlxgbhacks-admin--color-notice--success-alt);
+			border-left-color: var(--mrshortcutsgb-admin--color-notice--success-alt);
 		}
 
 		svg path {
-			fill: var(--dlxgbhacks-admin--color-notice--success-alt);
+			fill: var(--mrshortcutsgb-admin--color-notice--success-alt);
 		}
 	}
 
-	&.dlxgbhacks-admin__notice-type--info {
-		background-color: var(--dlxgbhacks-admin--color-notice--info);
+	&.mrshortcutsgb-admin__notice-type--info {
+		background-color: var(--mrshortcutsgb-admin--color-notice--info);
 
 		.components-notice {
-			border-left-color: var(--dlxgbhacks-admin--color-notice--info-alt);
+			border-left-color: var(--mrshortcutsgb-admin--color-notice--info-alt);
 		}
 
-		.dlxgbhacks-admin__notice-icon {
+		.mrshortcutsgb-admin__notice-icon {
 			svg:not(.lucide) path {
-				fill: var(--dlxgbhacks-admin--color-notice--info-alt);
+				fill: var(--mrshortcutsgb-admin--color-notice--info-alt);
 			}
 
 			svg.lucide {
-				color: var(--dlxgbhacks-admin--color-notice--info-alt);
+				color: var(--mrshortcutsgb-admin--color-notice--info-alt);
 			}
 		}
 
 		svg:not(.lucide) path {
-			fill: var(--dlxgbhacks-admin--color-notice--info-alt);
+			fill: var(--mrshortcutsgb-admin--color-notice--info-alt);
 		}
 	}
 
-	&.dlxgbhacks-admin__notice-type--warning {
-		background-color: var(--dlxgbhacks-admin--color-notice--warning);
+	&.mrshortcutsgb-admin__notice-type--warning {
+		background-color: var(--mrshortcutsgb-admin--color-notice--warning);
 
 		.components-notice {
-			border-left-color: var(--dlxgbhacks-admin--color-notice--warning-alt);
+			border-left-color: var(--mrshortcutsgb-admin--color-notice--warning-alt);
 		}
 
 		svg path {
-			fill: var(--dlxgbhacks-admin--color-notice--warning-alt);
+			fill: var(--mrshortcutsgb-admin--color-notice--warning-alt);
 		}
 	}
 }
@@ -519,8 +519,8 @@ html {
 
 .has-error {
 	input.components-text-control__input {
-		border: 1px solid var(--dlxgbhacks-admin--color-notice--error-alt);
-		background-color: var(--dlxgbhacks-admin--color-notice--error);
+		border: 1px solid var(--mrshortcutsgb-admin--color-notice--error-alt);
+		background-color: var(--mrshortcutsgb-admin--color-notice--error);
 	}
 }
 
@@ -727,7 +727,7 @@ html {
 
 /* Fancybox content */
 
-#dlx-gb-extras-preview {
+#mrshortcuts-gb-preview {
 	max-width: 600px;
 	margin: 0 auto;
 }

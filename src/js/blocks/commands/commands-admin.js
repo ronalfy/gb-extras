@@ -17,13 +17,13 @@ const CommandsAdmin = () => {
 };
 
 // Works in the block editor.
-registerPlugin( 'dlxgb-commands-admin', {
+registerPlugin( 'mrshortcuts-gb-commands-admin', {
 	render: CommandsAdmin,
 } );
 
 // Works in the admin area (non-block editor).
 // Attach to admin footer div.
-const rootElement = document.getElementById( 'gb-extras-commands-admin' );
+const rootElement = document.getElementById( 'mrshortcuts-gb-commands-admin' );
 if ( rootElement ) {
 	const root = createRoot( rootElement );
 	root.render( <CommandsAdmin /> );
