@@ -170,7 +170,7 @@ const Interface = ( props ) => {
 															'mediaron-block-shortcuts-for-gb'
 														) }
 													/>
-											) }
+												) }
 											/>
 										</div>
 									</div>
@@ -191,7 +191,7 @@ const Interface = ( props ) => {
 															'mediaron-block-shortcuts-for-gb'
 														) }
 													/>
-											) }
+												) }
 											/>
 										</div>
 									</div>
@@ -212,7 +212,7 @@ const Interface = ( props ) => {
 													) }
 												/>
 											) }
-											/>
+										/>
 									</div>
 									<div className="dlx-admin__row">
 										<Controller
@@ -231,7 +231,7 @@ const Interface = ( props ) => {
 													) }
 												/>
 											) }
-											/>
+										/>
 									</div>
 								</>
 							) }
@@ -408,7 +408,7 @@ const Interface = ( props ) => {
 												checked={ value ?? false }
 												onChange={ onChange }
 												help={ __(
-													'Administrators and Editors only: when enabled, replaces the Overlay Panels menu with a full GenerateBlocks menu containing Settings, Local Patterns, Global Styles, Overlay Panels, Conditions, Asset Library, and GB Extras.',
+													'Administrators and Editors only: when enabled, replaces the Overlay Panels menu with a full GenerateBlocks menu containing Settings, Local Patterns, Global Styles, Overlay Panels, Conditions, Asset Library, and Shortcuts.',
 													'mediaron-block-shortcuts-for-gb'
 												) }
 											/>

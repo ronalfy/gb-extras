@@ -1,7 +1,8 @@
-.gb-extras-icon-popover .components-popover__content > div {
+.mr-block-shortcuts-gb-icon-popover .components-popover__content>div {
 	min-width: 350px;
 }
-.gb-extras-icon-picker {
+
+.mr-block-shortcuts-gb-icon-picker {
 	padding: 16px;
 	text-align: center;
 
@@ -10,7 +11,8 @@
 		padding: 0;
 	}
 }
-.gb-extras-icon-list {
+
+.mr-block-shortcuts-gb-icon-list {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-gap: 10px;
@@ -22,41 +24,49 @@
 	li {
 		text-align: center;
 	}
+
 	svg {
 		width: 24px;
 		height: 24px;
 	}
 }
-.gb-extras-custom-icon-input {
+
+.mr-block-shortcuts-gb-custom-icon-input {
 	button {
 		&:first-child {
 			margin-right: 15px;
 		}
+
 		&:last-child {
 			margin-left: 15px;
 		}
 	}
 }
-.components-base-control.gb-extras-icon-wrapper {
+
+.components-base-control.mr-block-shortcuts-gb-icon-wrapper {
 	font-size: 1em;
 }
-.gb-extras-icon-preview {
+
+.mr-block-shortcuts-gb-icon-preview {
 	display: flex;
 	justify-content: center;
 	font-size: 1em;
+
 	svg {
 		width: 1.2em;
 		height: 1.2em;
 		margin-top: 0.175em;
 	}
 }
-.gb-extras-custom-icon-preview {
+
+.mr-block-shortcuts-gb-custom-icon-preview {
 	svg {
 		max-width: 48px;
 		max-height: 48px;
 	}
 }
-button.components-button.gb-extras-icon-preview-button {
+
+button.components-button.mr-block-shortcuts-gb-icon-preview-button {
 	display: flex;
 	align-items: flex-start;
 	justify-content: center;

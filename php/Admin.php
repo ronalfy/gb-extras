@@ -37,7 +37,7 @@ class Admin {
 		// For initializing settings links on the plugins screen.
 		add_action( 'admin_init', array( $this, 'init_settings_links' ) );
 
-		// Load GenerateBlocks settings CSS / dashboard body class on the Extras screen.
+		// Load GenerateBlocks settings CSS / dashboard body class on the Shortcuts screen.
 		add_filter( 'generateblocks_dashboard_screens', array( $this, 'add_dashboard_screen' ) );
 	}
 
@@ -226,8 +226,8 @@ class Admin {
 	public function add_admin_menu() {
 		add_submenu_page(
 			'generateblocks',
-			__( 'Extras', 'mediaron-block-shortcuts-for-gb' ),
-			__( 'Extras', 'mediaron-block-shortcuts-for-gb' ),
+			__( 'Shortcuts', 'mediaron-block-shortcuts-for-gb' ),
+			__( 'Shortcuts', 'mediaron-block-shortcuts-for-gb' ),
 			'manage_options',
 			'mrshortcuts-gb',
 			array( $this, 'admin_page' ),

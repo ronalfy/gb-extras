@@ -279,12 +279,12 @@ class Admin_Bar {
 			}
 		}
 
-		// Add Extras last.
+		// Add Shortcuts last.
 		$admin_bar->add_node(
 			array(
 				'parent' => 'generateblocks-settings-group',
-				'id'     => 'generateblocks-extras-item',
-				'title'  => __( 'Extras', 'mediaron-block-shortcuts-for-gb' ),
+				'id'     => 'mr-shortcuts-item',
+				'title'  => __( 'Shortcuts', 'mediaron-block-shortcuts-for-gb' ),
 				'href'   => admin_url( 'admin.php?page=mrshortcuts-gb' ),
 			)
 		);

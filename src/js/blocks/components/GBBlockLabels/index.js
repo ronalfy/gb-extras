@@ -25,7 +25,7 @@ function addGenerateBlocksV1Category( categories ) {
 
 // Modify block registration for v1 and v2 blocks.
 function modifyBlockRegistration( settings, name ) {
-	if ( v1Blocks.includes( name ) && gbExtrasPatternInserter.enableV1Blocks ) {
+	if ( v1Blocks.includes( name ) && mrshortcutsgbPatternInserter.enableV1Blocks ) {
 		return {
 			...settings,
 			category: 'generateblocks-v1',
@@ -47,14 +47,14 @@ addFilter(
 	'gbcm/add-v1-category',
 	addGenerateBlocksV1Category
 );
-if ( 'true' === gbExtrasPatternInserter.enableV1Blocks ) {
+if ( 'true' === mrshortcutsgbPatternInserter.enableV1Blocks ) {
 	removeFilter( 'blocks.registerBlockType', 'generateblocks/disableBlocks' );
 }
 
 // Register a plugin to get all blocks.
 wp.plugins.registerPlugin( 'generateblocks-custom', {
 	render: () => {
-		if ( 'true' !== gbExtrasPatternInserter.enableV1Blocks ) {
+		if ( 'true' !== mrshortcutsgbPatternInserter.enableV1Blocks ) {
 			return null;
 		}
 
@@ -75,7 +75,7 @@ wp.plugins.registerPlugin( 'generateblocks-custom', {
 						unregisterBlockType( block.name );
 						// Get the original __experimentalLabel function if it exists.
 						const originalLabel = block.__experimentalLabel;
-						const v1Suffix = escapeAttribute( gbExtrasPatternInserter.v1BlockSuffix );
+						const v1Suffix = escapeAttribute( mrshortcutsgbPatternInserter.v1BlockSuffix );
 
 						// Remove suffix from title if it already exists (from filter hook).
 						let originalTitle = block.title;
@@ -122,7 +122,7 @@ wp.plugins.registerPlugin( 'generateblocks-custom', {
 						// Re-register with updated title.
 						registerBlockType( block.name, {
 							...block,
-							title: block.title + ' ' + escapeAttribute( gbExtrasPatternInserter.v2BlockSuffix ),
+							title: block.title + ' ' + escapeAttribute( mrshortcutsgbPatternInserter.v2BlockSuffix ),
 						} );
 
 						// Get all variations of the v2 Blocks and update the title.
@@ -134,7 +134,7 @@ wp.plugins.registerPlugin( 'generateblocks-custom', {
 								unregisterBlockVariation( block.name, variation.name );
 
 								// Change title of variation.
-								variation.title = variation.title + ' ' + escapeAttribute( gbExtrasPatternInserter.v2BlockSuffix );
+								variation.title = variation.title + ' ' + escapeAttribute( mrshortcutsgbPatternInserter.v2BlockSuffix );
 
 								registerBlockVariation( block.name, variation );
 							} );

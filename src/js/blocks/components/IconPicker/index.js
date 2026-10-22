@@ -27,10 +27,10 @@ const IconPicker = (props) => {
 		if (!isCustomIcon) {
 			return (
 				<>
-					<ul className="gb-extras-icon-list">
+					<ul className="mr-block-shortcuts-gb-icon-list">
 						{Object.keys(icons).map((svg, i) => {
 							return (
-								<li key={`gb-extras-icon-${i}`}>
+								<li key={`mr-block-shortcuts-gb-icon-${i}`}>
 									<Tooltip text={icons[svg].label}>
 										<Button
 											className="editor-block-list-item-button"
@@ -50,18 +50,18 @@ const IconPicker = (props) => {
 						})}
 					</ul>
 					<Button
-						className="gb-extras-custom-icon-button"
+						className="mr-block-shortcuts-gb-custom-icon-button"
 						variant="secondary"
 						showTooltip={true}
 						label={__(
 							'Add in a custom SVG instead of selecting an icon.',
-							'gb-extras'
+							'mr-block-shortcuts-gb'
 						)}
 						onClick={() => {
 							setIsCustomIcon(true);
 						}}
 					>
-						{__('Set a Custom Icon', 'gb-extras')}
+						{__('Set a Custom Icon', 'mr-block-shortcuts-gb')}
 					</Button>
 				</>
 			);
@@ -69,14 +69,14 @@ const IconPicker = (props) => {
 		// Return custom icon interface.
 		return (
 			<>
-				<div className="gb-extras-custom-icon-preview">
+				<div className="mr-block-shortcuts-gb-custom-icon-preview">
 					<span
 						dangerouslySetInnerHTML={{ __html: sanitizeSVG(selectedIcon) }}
 					/>
 				</div>
-				<div className="gb-extras-custom-icon-input">
+				<div className="mr-block-shortcuts-gb-custom-icon-input">
 					<TextControl
-						label={__('SVG Code', 'gb-extras')}
+						label={__('SVG Code', 'mr-block-shortcuts-gb')}
 						value={sanitizeSVG(selectedIcon)}
 						onChange={(value) => {
 							setSelectedIcon(value);
@@ -91,7 +91,7 @@ const IconPicker = (props) => {
 							setSelectedIcon(selectedIcon);
 						}}
 					>
-						{__('Set Icon', 'gb-extras')}
+						{__('Set Icon', 'mr-block-shortcuts-gb')}
 					</Button>
 					<Button
 						variant="tertiary"
@@ -99,7 +99,7 @@ const IconPicker = (props) => {
 							setIsCustomIcon(false);
 						}}
 					>
-						{__('Back to Icons', 'gb-extras')}
+						{__('Back to Icons', 'mr-block-shortcuts-gb')}
 					</Button>
 				</div>
 			</>
@@ -112,10 +112,10 @@ const IconPicker = (props) => {
 
 	return (
 		<>
-			<BaseControl className="gb-extras-icon-wrapper">
-				<div className="gb-extras-icon-preview">
+			<BaseControl className="mr-block-shortcuts-gb-icon-wrapper">
+				<div className="mr-block-shortcuts-gb-icon-preview">
 					<Button
-						className="button-reset gb-extras-icon-preview-button"
+						className="button-reset mr-block-shortcuts-gb-icon-preview-button"
 						onClick={(e) => {
 							if (isFocusedOutside) {
 								setIsFocusedOutside(false);
@@ -129,12 +129,12 @@ const IconPicker = (props) => {
 				</div>
 			</BaseControl>
 			{isPopoverVisible && (
-				<Popover noArrow={false} className="gb-extras-icon-popover" onFocusOutside={() => {
+				<Popover noArrow={false} className="mr-block-shortcuts-gb-icon-popover" onFocusOutside={() => {
 					setIsFocusedOutside(true);
 					setIsPopOverVisible(false);
 				}}>
-					<BaseControl className="gb-extras-icon-picker">
-						<h2>{__('Select an Icon', 'gb-extras')}</h2>
+					<BaseControl className="mr-block-shortcuts-gb-icon-picker">
+						<h2>{__('Select an Icon', 'mr-block-shortcuts-gb')}</h2>
 						{getPopoverContent()}
 					</BaseControl>
 				</Popover>
