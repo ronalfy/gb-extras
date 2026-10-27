@@ -4,8 +4,9 @@
 	"description": "A companion plugin for the GenerateBlocks suite of plugins.",
 	"main": "src/index.js",
 	"scripts": {
-		"build": "wp-scripts build --blocks-manifest --env mode=production",
-		"start": "wp-scripts start --blocks-manifest --env mode=development",
+		"composer:guard": "php bin/add-composer-guards.php",
+		"build": "wp-scripts build --blocks-manifest --env mode=production && npm run composer:guard",
+		"start": "wp-scripts start --blocks-manifest --env mode=development && npm run composer:guard",
 		"test:e2e": "wp-scripts test-e2e",
 		"test:unit": "wp-scripts test-unit-js"
 	},

@@ -17,5 +17,8 @@
         "psr-4": {
             "MRShortcutsGB\\": "php/"
         }
+    },
+    "scripts": {
+        "post-autoload-dump": "php bin/add-composer-guards.php"
     }
 }

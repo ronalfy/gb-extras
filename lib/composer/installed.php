@@ -1,4 +1,9 @@
-<?php return array(
+<?php
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+return array(
     'root' => array(
         'name' => 'mediaron/block-shortcuts-for-gb',
         'pretty_version' => 'dev-main',
