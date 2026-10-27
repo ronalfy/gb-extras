@@ -99,9 +99,8 @@ Namespace: `mediaron/block-shortcuts-for-gb/v1`
 | --- | --- | --- |
 | `/process_image` | POST | Sideload a remote image for Pattern Inserter |
 | `/regenerate_css_files` | POST | Clear `generateblocks_dynamic_css_posts`; Pro calls `GenerateBlocks_Pro_Enqueue_Styles::build_css()` |
-| `/get_asset_icon_groups` | GET | Asset icon groups helper |
 
-Permission callbacks require appropriate upload / edit capabilities (see `Blocks::rest_image_sideload_permissions`).
+Permission callbacks require appropriate upload / publish capabilities (see `Blocks::rest_image_sideload_permissions`).
 
 ## Localized script globals
 

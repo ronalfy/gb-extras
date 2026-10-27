@@ -256,20 +256,11 @@ class Blocks {
 		);
 		register_rest_route(
 			'mediaron/block-shortcuts-for-gb/v1',
-			'/get_asset_icon_groups',
-			array(
-				'methods'             => 'GET',
-				'callback'            => array( $this, 'rest_get_gb_groups' ),
-				'permission_callback' => array( $this, 'rest_image_sideload_permissions' ),
-			)
-		);
-		register_rest_route(
-			'mediaron/block-shortcuts-for-gb/v1',
 			'/regenerate_css_files',
 			array(
 				'methods'             => 'POST',
 				'callback'            => array( $this, 'rest_regenerate_css_files' ),
-				'permission_callback' => array( $this, 'rest_image_sideload_permissions' ),
+				'permission_callback' => array( $this, 'rest_can_regenerate_css_files' ),
 			)
 		);
 	}
@@ -364,31 +355,6 @@ class Blocks {
 	}
 
 	/**
-	 * Process a list of images for a plugin.
-	 */
-	public function rest_get_gb_groups() {
-
-		// Get existing SVGs.
-		$existing_svg_assets = get_option( 'generateblocks_svg_icons', array() );
-
-		// Loop through and get `group`.
-		$groups = array();
-		foreach ( $existing_svg_assets as $svg_asset ) {
-			$groups[] = $svg_asset['group'];
-		}
-
-		// If the group is empty, then on JS side, prompt for a group name.
-		$groups = array_unique( $groups );
-
-		// Send success.
-		\wp_send_json_success(
-			array(
-				'groups' => $groups,
-			)
-		);
-	}
-
-	/**
 	 * Regenerate GenerateBlocks CSS caches and global stylesheet files.
 	 *
 	 * @param \WP_REST_Request $request REST request.
@@ -433,7 +399,15 @@ class Blocks {
 	 * Check if user has access to REST API for retrieving and sideloading images.
 	 */
 	public function rest_image_sideload_permissions() {
-		return current_user_can( 'publish_posts' );
+		// Only allow authors and up the ability to import remote images.
+		return current_user_can( 'upload_files' ) && current_user_can( 'publish_posts' );
+	}
+
+	/**
+	 * Check if user has access to REST API for regenerating CSS files.
+	 */
+	public function rest_can_regenerate_css_files() {
+		return current_user_can( 'manage_options' );
 	}
 
 	/**
