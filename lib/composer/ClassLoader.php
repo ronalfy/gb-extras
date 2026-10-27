@@ -1,8 +1,5 @@
 <?php
-// Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+
 /*
  * This file is part of Composer.
  *
@@ -14,6 +11,10 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 
 namespace Composer\Autoload;
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * ClassLoader implements a PSR-0, PSR-4 and classmap class loader.

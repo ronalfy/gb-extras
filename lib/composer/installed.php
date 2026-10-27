@@ -8,7 +8,7 @@ return array(
         'name' => 'mediaron/block-shortcuts-for-gb',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '5f097fc6ee5426fd0d6fa4506e9c6215aa702a04',
+        'reference' => 'f0dd3737e5e7a7ac0eadbeb4ebe356ddec031f38',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -18,7 +18,7 @@ return array(
         'mediaron/block-shortcuts-for-gb' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '5f097fc6ee5426fd0d6fa4506e9c6215aa702a04',
+            'reference' => 'f0dd3737e5e7a7ac0eadbeb4ebe356ddec031f38',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

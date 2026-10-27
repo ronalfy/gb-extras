@@ -1,8 +1,4 @@
 <?php
-// Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
 /*
  * This file is part of Composer.
  *
@@ -13,13 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
  * file that was distributed with this source code.
  */
 
-namespace Composer;
-
-use Composer\Autoload\ClassLoader;
-use Composer\Semver\VersionParser;
-
-/**
- * This class is copied in every Composer installed project and available to all
+namespace Composer;use Composer\Autoload\ClassLoader;use Composer\Semver\VersionParser;/** * This class is copied in every Composer installed project and available to all
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
  *
  * See also https://getcomposer.org/doc/07-runtime.md#installed-versions
  *
