@@ -128,17 +128,25 @@ class Admin_Bar {
 
 		if ( ! is_admin() && class_exists( '\GenerateBlocks_Pro_Design_Menu' ) ) {
 			$menu_font_url = GENERATEBLOCKS_PRO_DIR_URL . 'dist/assets/fonts/generatepress-admin.woff2';
-			?>
-			<style id="gb-admin-menu-groups">
-			@font-face {
-				font-family: generatepress-admin;
-				src: url("<?php echo esc_url( $menu_font_url ); ?>") format("woff2");
-				font-weight: 400;
-				font-style: normal;
-				font-display: block;
-			}
-			</style>
-			<?php
+
+			wp_register_style(
+				'mrshortcuts-gb-admin-bar-font',
+				null,
+				array(),
+				'1.0.0',
+				'all'
+			);
+			wp_add_inline_style(
+				'mrshortcuts-gb-admin-bar-font',
+				'@font-face {
+					font-family: generatepress-admin;
+					src: url("' . esc_url( $menu_font_url ) . '") format("woff2");
+					font-weight: 400;
+					font-style: normal;
+					font-display: block;
+				}'
+			);
+			wp_enqueue_style( 'mrshortcuts-gb-admin-bar-font' );
 		}
 
 		// Add main GenerateBlocks menu item.
