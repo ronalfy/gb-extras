@@ -7,7 +7,7 @@ Requires PHP: 8.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Enhance your GenerateBlocks experience with "MediaRon Block Shortcuts for GenerateBlocks", featuring a Pattern Importer, v1 to v2 transforms, container shortcuts, and more.
+Enhance your GB experience with Block Shortcuts for GenerateBlocks, featuring a Pattern Importer, v1 to v2 transforms, container shortcuts, and more.
 
 == Description ==
 
@@ -22,6 +22,7 @@ MediaRon Block Shortcuts for GenerateBlocks is an add-on for <a href="https://ge
 7. **Unique ID Generation**: Avoid style conflicts by generating new unique IDs for duplicated or copied blocks. This is still very useful today.
 8. **Build Styles for Select Post Types and Templates**: Have GenerateBlocks regenerate site-wide styles based on your selected post types or FSE templates.
 9. **Useful Block Commands**: Convert all paragraph blocks into Text blocks (with paragraphs being selected) as well as converting all headlines into a Text block with appropriate headings selected.
+10. **Add a Global Menu Toolbar Shortcut**: The current admin bar only shows overlays. With Block Shortcuts, you can see all available menu items from a top-level admin menu in the toolbar in both the admin and the frontend.
 
 MediaRon Block Shortcuts for GenerateBlocks is perfect for users looking to streamline their GenerateBlocks workflow and add more versatility to the block editor design experience.
 
@@ -32,6 +33,10 @@ MediaRon Block Shortcuts for GenerateBlocks is perfect for users looking to stre
 1. Upload the plugin files to the `/wp-content/plugins/mediaron-block-shortcuts-for-gb` directory, or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the 'Plugins' screen in WordPress.
 3. Use the plugin via the block editor in your WordPress site.
+
+A <a href="https://generatepress.com/pricing/">GeneratePress One subscription</a> is recommended, but not required for this plugin to work.
+
+This plugin <a href="https://wordpress.org/plugins/generateblocks/">requires GenerateBlocks</a> to work.
 
 == Frequently Asked Questions ==
 

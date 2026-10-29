@@ -3,8 +3,8 @@
  * Plugin Name:       MediaRon Block Shortcuts for GenerateBlocks
  * Description:       A collection of enhancements for the GenerateBlocks plugins.
  * Version:           1.0.0
- * Requires at least: 6.9
- * Requires PHP:      8.0
+ * Requires at least: 7.0
+ * Requires PHP:      8.2
  * Author:            Ronald Huereca
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
